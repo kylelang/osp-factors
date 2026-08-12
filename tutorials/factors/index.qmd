@@ -1,0 +1,46 @@
+---
+title: "Factors"
+---
+
+::: {.callout-note}
+
+## Learning Outcomes
+
+By the end of this tutorial, you will be able to:
+
+- **Describe** the characteristics of an R factor.
+- **Explain** how factors differ from atomic vectors.
+- **Generate** new factors in R.
+- **Access and modify** factor levels.
+- **Describe** important use-cases for factors, and explain why factors are the best choice in these situations.
+
+:::
+
+In statistical data analysis, we often necessary to represent categorical variables: data that fall into of discrete
+groups or levels. Typical examples include nominal variables like {"male", "female"}, {"yes", "no"}, or political party
+affiliation. In R, we use *factors* to represent categorical variables in our data.
+
+An R factor is a special kind of object that encodes a categorical variable's grouping information through in a
+consistent way that R functions know how to handle. Factors are particularly important for modeling and plotting
+functions. When we use a categorical variable as part of a statistical model or visualization, the variable needs
+special treatment to be treated as groupings or levels, rather than as continuous quantities.
+
+## Where Factors Fit
+
+If you've completed the earlier modules in this series, you already have all the background you need for factors.
+Recall the hierarchy of data structures you've built up so far:
+
+1. Single values
+1. Vectors (one-dimensional, same type)
+1. Matrices (two-dimensional, same type)
+1. Lists (one-dimensional, mixed types)
+1. Data frames (two-dimensional, mixed types across columns)
+
+Factors don't add a new dimension or a new mixing rule, they add *meaning*. A factor is built on top of an integer
+vector, but that integer vector represents categories, not quantities. This tutorial is about understanding that
+distinction and why it matters.
+
+## Quick Check
+
+Before reading further: why might it be a problem if R treated a "yes"/"no" survey response the same way it treats
+an ordinary numeric measurement?

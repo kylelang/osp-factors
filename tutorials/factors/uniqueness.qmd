@@ -1,0 +1,66 @@
+---
+title: "Special Role of Factors"
+---
+
+::: {.callout-note}
+This page is entirely conceptual: explaining why factors are neither numeric nor
+character vectors, even though they can look like either when printed.
+:::
+
+Factors often cause confusion for new (and not-so-new) data analysts. In particular, the `print()` method for factors
+shows the level names when printing factors. So, factors with textual level names (e.g., {"male", "female"}) look much
+like character vectors when printed, and factors with numeric level names (e.g., {"0", "1"}) look like numeric vectors.
+However, factors are not character vectors, numeric vectors, nor any other type of atomic vector: they have their own 
+class, `factor`, which tells R functions to treat factors as encoded categorical variables.
+
+```{r}
+f1 <- factor(sample(0:1, 10, TRUE))
+f2 <- factor(sample(c("foo", "bar"), 10, TRUE))
+
+f1 # looks a lot like an integer vector
+f2 # looks like a character vector
+
+# Not numeric or character
+is.numeric(f1)
+is.integer(f1)
+is.character(f1)
+
+is.numeric(f2)
+is.integer(f2)
+is.character(f2)
+
+# Not any type of vector, at all, actually
+is.vector(f1)
+is.vector(f2)
+```
+
+Similarly, even though factors are built from integer vectors, we can't do mathematical operations on factors. Since
+factors represent discrete categories, not continuous quantities, mathematical operations on factors are generally
+meaningless.
+
+```{r}
+f1 + 1
+mean(f1)
+```
+
+In the examples above, the requested operations return missing values, `NA`, because we're asking R to do a nonsensical
+calculation. So, the result cannot be meaningfully defined. By design, treating a factor as if it were numeric produces
+errors and/or null results. This conservative behavior ensures that categorical data are not accidentally interpreted as
+numeric values, which will usually produce misleading results.
+
+::: {.callout-tip}
+
+## Why This Matters
+
+It's tempting to treat this page as "just more syntax," but the real skill here is conceptual: being able to
+*predict* when R will refuse to do something with a factor, and *explain why*, before you ever hit the error
+yourself. The Quick Check below and the quiz for this tutorial both test this directly, not just whether you can run
+the code.
+
+:::
+
+## Quick Check
+
+- If `f1 <- factor(c("1", "2", "3"))`, what would `f1 + 1` return, and why?
+- A colleague says: "I printed my factor and it looked exactly like a numeric vector, so I assume it *is* one." What
+  would you tell them?

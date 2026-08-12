@@ -1,0 +1,97 @@
+---
+title: "When to Use a Factor"
+---
+
+::: {.callout-note}
+This page asks you to reason about *when* to reach for a factor, not how to build one.
+:::
+
+You now know how to create factors and how they differ from ordinary vectors internally. This page asks a different
+question: given some data, how do you decide whether it *should* be a factor in the first place?
+
+## Good Candidates for Factors
+
+A variable is usually a good candidate for a factor when it represents **categories, not quantities**, even if
+those categories happen to be written as numbers. A few examples:
+
+- **Nominal categories with no inherent order**, like `{"red", "blue", "green"}` or `{"male", "female",
+  "non-binary"}`.
+- **Ordinal categories with a meaningful order**, like `{"low", "medium", "high"}` or a Likert-scale response like
+  `{"strongly disagree", ..., "strongly agree"}`. (R factors can represent ordered categories too, via the `ordered`
+  argument to `factor()`, though we won't go deep into that here.)
+- **Numerically coded categories**, like a survey where `1` means "yes" and `2` means "no." Here the numbers are
+  really just category *labels* in disguise. Doing arithmetic on them (like averaging `1.4`) wouldn't mean
+  anything.
+
+## Poor Candidates for Factors
+
+On the other hand, don't reach for a factor just because a variable happens to take on a small number of distinct
+values. A few examples where a factor would be the *wrong* choice:
+
+- **A count**, like "number of children", even if most values fall between 0 and 4, this is a genuine quantity you
+  might want to average or add.
+- **A continuous measurement that happens to be rounded**, like a test score out of 100, you'd still want to do
+  arithmetic on this.
+- **An identifier**, like a participant ID number, while these aren't meaningfully "categories" in the usual sense,
+  they also aren't something you'd typically model or plot as groups, so a plain character or integer vector is
+  usually more appropriate.
+
+::: practice
+
+## Practice
+
+For each of the following variables, decide whether a factor would be an appropriate choice. Be ready to explain
+your reasoning.
+
+1. A column recording each survey respondent's marital status: `{"single", "married", "divorced", "widowed"}`.
+1. A column recording each respondent's exact age in years.
+1. A column recording which of 3 experimental treatment groups each participant was assigned to.
+1. A column recording each respondent's annual income in dollars.
+
+:::: {.panel-tabset}
+## {{< var tab_title.question >}}
+
+Think through each variable before checking the solution.
+
+## {{< var tab_title.solution >}}
+
+1. **Factor.** Marital status is a small set of unordered categories, a textbook use-case for a factor.
+1. **Not a factor.** Age is a genuine quantity, you'd want to compute averages, compare magnitudes, and so on.
+1. **Factor.** Treatment group assignment is exactly the kind of categorical grouping factors were designed for,
+   especially since this variable will likely be used in a statistical model later.
+1. **Not a factor.** Income is a continuous quantity, even though it might have a skewed distribution, you wouldn't
+   want R to prevent you from computing a mean or a sum.
+::::
+
+:::
+
+## Why This Distinction Matters
+
+Getting this right isn't just a matter of style. If you accidentally leave a categorical variable as plain numbers,
+statistical modeling functions may treat it as a continuous predictor (implying, incorrectly, that "group 2" is
+somehow "twice as much" as "group 1"). If you accidentally convert a genuine quantity into a factor, you'll lose the
+ability to do arithmetic on it, and many modeling and plotting functions will treat it as a set of unordered
+categories instead of a meaningful numeric scale. Choosing the right representation up front saves you from subtle,
+hard-to-diagnose errors later in an analysis.
+
+## Quick Check
+
+- Would you use a factor for a column recording customers' star ratings (1–5) on a product review site? What about a
+  column recording the *number* of reviews each product received? Explain the difference.
+
+::: {.callout-tip}
+
+## Ready to Continue?
+
+You've now completed the *Factors* module. You're ready to move on if you can:
+
+- Explain what makes a factor different from an ordinary numeric or character vector.
+- Generate a factor using `factor()`, and access or modify its levels.
+- Explain why mathematical operations on a factor return `NA` instead of a number.
+- Decide, given a description of a variable, whether it should be represented as a factor.
+
+If any of these still feel shaky, revisit the relevant page above, or try the
+[Knowledge Quiz](/quizzes/factors/index.qmd) to pinpoint exactly where to focus. Once you're ready, head to the
+[Conclusion](/conclusion.qmd) page to find this module's hand-in assignment.
+
+:::

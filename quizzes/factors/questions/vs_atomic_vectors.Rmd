@@ -1,0 +1,27 @@
+Question
+========
+`f <- factor(c("1", "2", "3"))` creates a factor whose levels look like numbers. Which of the following correctly
+predicts and explains what `f + 1` returns?
+
+Answerlist
+----------
+* It returns `NA` for every element, because factors aren't numeric. Arithmetic on a factor doesn't have a
+  meaningful definition, regardless of what the level names look like.
+* It returns `c(2, 3, 4)`, because R converts the level names to numbers before adding.
+* It returns an error that stops execution, because R refuses to evaluate the expression at all.
+* It returns `c("1", "2", "3", 1)`, appending the `1` to the factor's levels.
+* It returns `f` unchanged, since adding `1` to a factor has no effect.
+
+Solution
+========
+Even though this factor's level *names* happen to look like numbers, a factor is never numeric under the hood. It's
+an integer vector of category codes plus a `levels` attribute, with its own dedicated class. R won't guess that you
+meant to convert the level names to numbers first; arithmetic on a factor simply isn't defined, so every element of
+the result becomes a missing value, `NA`, rather than raising a hard error or silently doing something unintended.
+
+Meta-information
+================
+exname: Factors vs Atomic Vectors
+extype: schoice
+exsolution: 10000
+exshuffle: TRUE

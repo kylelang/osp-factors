@@ -1,0 +1,26 @@
+---
+title: "Knowledge Quiz: Factors"
+---
+
+::: {.column-margin}
+
+:::: {.callout-note}
+- Click the check-mark button to check your answer.
+- Click the question-mark button to see an explanation of the solution.
+::::
+
+:::
+
+```{r factors_quiz}
+#| echo: FALSE
+#| results: "asis"
+
+exams2forms::exams2forms(
+  file = list(
+    "factor_levels.Rmd",
+    "vs_atomic_vectors.Rmd",
+    "use_case_reasoning.Rmd"
+  ),
+  edir = here::here("quizzes", "factors", "questions")
+)
+```

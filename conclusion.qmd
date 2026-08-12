@@ -1,0 +1,85 @@
+---
+title: "Conclusion"
+format:
+  html: 
+    toc: false
+    link-external-icon: true
+    link-external-newwindow: true
+    link-external-filter: ^(?:http:|https:)\/\/www\.openstatprog\.com
+---
+
+```{r include = FALSE}
+source(here::here("R", "buttons.R"))
+```
+
+By completing this module, you've built a solid understanding of R's tool for representing categorical data:
+**factors**.
+
+## Hand-In Assignment
+
+::: practice
+
+## Factors Capstone Assignment
+
+Complete each step below in your own R session, then submit your work (see "What to Hand In" below).
+
+1. **Generate.** Create a character vector called `sizes` containing 15 values randomly sampled (with replacement)
+   from `{"small", "medium", "large"}`. Then create a factor called `size_factor` from `sizes`.
+1. **Inspect.** Print `levels(size_factor)` and `table(size_factor)`. In a comment, explain what each of these two
+   commands tells you.
+1. **Modify levels.** Relabel the factor's levels to `{"S", "M", "L"}` (in the order that matches your original
+   `{"small", "medium", "large"}` levels).
+1. **Conceptual explanation.** In a comment, explain what would happen if you ran `size_factor + 1`, and *why*,
+   referring specifically to what a factor actually stores internally.
+1. **Use-case reasoning.** In a comment, describe one variable from a dataset you're familiar with (real or
+   hypothetical) that *should* be represented as a factor, and one that *should not*, and explain your reasoning for
+   each.
+
+### What to Hand In
+
+Save all of your commands, in the order you ran them, in a single plain-text or R script file (e.g.
+`yourname_factors.R`), including all four required comments.
+
+A teacher reviewing your submission should be able to see: a correctly constructed factor, correct use of `levels()`
+and `table()` with an accurate explanation, correct level relabeling, an accurate conceptual explanation of factor
+arithmetic, and sound reasoning about when a factor is (and isn't) the right choice.
+
+:::
+
+## Learning Goals
+
+Now that you've completed this module, you should be able to:
+
+1. Describe the characteristics of an R factor.
+1. Explain how factors differ from atomic vectors.
+1. Generate new factors in R.
+1. Access and modify factor levels.
+1. Describe important use-cases for Factors, and explain why factors are the best choice in these situations.
+
+## Additional Reading
+
+For more information on the topics we've covered in this module, the following chapter from Hadley Wickham's *R for
+Data Science* is an excellent resource.
+
+- [Factors](https://r4ds.hadley.nz/factors.html) in the [Second Edition](https://r4ds.hadley.nz/index.html).
+
+### Advanced Reading
+
+For a much more technical deep-dive into vectors and vector-like structures (including factors), check out the
+following chapter from Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/index.html).
+
+- [Vectors](https://adv-r.hadley.nz/vectors-chap.html)
+
+## Next Steps 
+
+Now that you have a good introduction to the fundamental data structures of the R statistical programming language you're ready to start thinking about how to best organize your data analysis projects. In the next module, we'll explore different aspects of effective R workflows, scripts, working
+directories, R projects, file paths, and coding style, to help you create reproducible, organized, and efficient
+data analysis projects.
+
+```{r}
+#| echo: false
+#| results: asis
+
+# next_module_button("https://www.openstatprog.com/workflow/index.html")
+next_module_button("in_progress.html")
+```
