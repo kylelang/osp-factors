@@ -40,9 +40,7 @@ Complete each step below in your own R session, then submit your work (see "What
 Save all of your commands, in the order you ran them, in a single plain-text or R script file (e.g.
 `yourname_factors.R`), including all four required comments.
 
-A teacher reviewing your submission should be able to see: a correctly constructed factor, correct use of `levels()`
-and `table()` with an accurate explanation, correct level relabeling, an accurate conceptual explanation of factor
-arithmetic, and sound reasoning about when a factor is (and isn't) the right choice.
+A teacher reviewing your submission should be able to see: a correctly constructed factor, correct use of `levels()` and `table()` with an accurate explanation, correct level relabeling, an accurate conceptual explanation of factor arithmetic, and sound reasoning about when a factor is (and isn't) the right choice.
 
 :::
 
@@ -58,23 +56,19 @@ Now that you've completed this module, you should be able to:
 
 ## Additional Reading
 
-For more information on the topics we've covered in this module, the following chapter from Hadley Wickham's *R for
-Data Science* is an excellent resource.
+For more information on the topics we've covered in this module, the following chapter from Hadley Wickham's *R for Data Science* is an excellent resource.
 
 - [Factors](https://r4ds.hadley.nz/factors.html) in the [Second Edition](https://r4ds.hadley.nz/index.html).
 
 ### Advanced Reading
 
-For a much more technical deep-dive into vectors and vector-like structures (including factors), check out the
-following chapter from Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/index.html).
+For a much more technical deep-dive into vectors and vector-like structures (including factors), check out the following chapter from Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/index.html).
 
 - [Vectors](https://adv-r.hadley.nz/vectors-chap.html)
 
 ## Next Steps 
 
-Now that you have a good introduction to the fundamental data structures of the R statistical programming language you're ready to start thinking about how to best organize your data analysis projects. In the next module, we'll explore different aspects of effective R workflows, scripts, working
-directories, R projects, file paths, and coding style, to help you create reproducible, organized, and efficient
-data analysis projects.
+Now that you have a good introduction to the fundamental data structures of the R statistical programming language you're ready to start thinking about how to best organize your data analysis projects. In the next module, we'll explore different aspects of effective R workflows, scripts, working directories, R projects, file paths, and coding style, to help you create reproducible, organized, and efficient data analysis projects.
 
 ```{r}
 #| echo: false
