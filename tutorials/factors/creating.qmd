@@ -24,7 +24,11 @@ in the resulting factor object.
 - Factors have their own class: "factor".
 - Factors have a "levels" attribute that stores the names of the groups represented by the factor.
 - Factors use integer vectors to represent the grouping implied by the input vector.
-   - Regardless of what type the input vector has, the data underlying the new factor will be an integer vector.
+  - Regardless of the input vector's type, the data underlying the new factor will be an integer vector.
+
+## Class
+
+Factors have their own class: "factor".
 
 ```{r}
 # Factors have their own class
@@ -32,21 +36,71 @@ class(x)
 class(f1)
 class(y)
 class(f2)
+```
 
-# Factors have a levels attribute
+## Attributes
+
+Factors have a "levels" attribute that stores the names of the groups represented by the factor.
+
+Since `x` and `y` are atomic vectors, they don't have any attributes.
+
+```{r}
 attributes(x)
-attributes(f1)
 attributes(y)
-attributes(f2)
+```
 
-# Factors use integer vectors to map each observation to a group
+But the factors `f1` and `f2` have *levels* and *class* attributes.
+
+```{r}
+attributes(f1)
+attributes(f2)
+```
+
+## Vector Type
+
+Much like a matrix is just a vector with a *dim* attribute, a factor is just an integer vector with *levels* and *class*
+attributes.
+
+  - Regardless of the input vector's type, the data underlying the new factor will be an integer vector.
+
+As you'd expect, `x` and `y` have suitable atomic types (namely, integer and character).
+
+```{r}
 typeof(x)
-typeof(f1)
 typeof(y)
+```
+
+But the factors `f1` and `f2` are both integer vectors, at their core: all factors are.
+
+```{r}
+typeof(f1)
 typeof(f2)
 ```
 
-### Factor Levels
+::: {.callout-important}
+
+Unlike vectors and matrices, we cannot freely revert a factor to its input vector by deleting the factor-specific
+attributes. In all but the most specialized cases, we'll loose information.
+
+:::
+
+Since `x` was originally an integer vector, this process seems to work for `f1`.
+
+```{r}
+attributes(f1) <- NULL
+f1
+identical(x, f1)
+```
+
+But we clearly loose information if we try to naively convert `f2` back to a vector.
+
+```{r}
+attributes(f2) <- NULL
+f2
+identical(y, f2)
+```
+
+## Factor Levels
 
 The levels name the categories represented by the factor. By default, the `factor()` function will use the unique values
 of the input vector to name the levels of the resulting factor.
@@ -78,8 +132,6 @@ table(z, f3)
 
 ::: practice 
 
-## Practice
-
 Create a length-20 factor with two levels = {"yes", "no"}.
 
 :::: {.panel-tabset}
@@ -87,7 +139,6 @@ Create a length-20 factor with two levels = {"yes", "no"}.
 ## {{< var tab_title.editor >}}
 
 ```{webr-r}
-
 ```
 
 ## {{< var tab_title.solution >}}
