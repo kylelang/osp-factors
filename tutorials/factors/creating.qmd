@@ -2,17 +2,19 @@
 title: "Creating Factors"
 ---
 
-::: {.callout-note}
-This page is hands-on: generating factors and working with their levels.
-:::
-
 We create factors using the `factor()` function. This function takes a vector of values (typically numeric or
 character) where each unique value represents a group and converts this input vector into a factor.
 
-```{r}
-(x <- sample(1:3, 20, TRUE))
-(f1 <- factor(x))
+Below, we create a length-10 integer vector, `x`, and convert it to a factor called `f1`.
 
+```{r}
+(x <- sample(1:3, 10, TRUE))
+(f1 <- factor(x))
+```
+
+Here, we create a length-10 character vector, `y`, and convert it to a factor called `f2`.
+
+```{r}
 (y <- rep(c("foo", "bar"), 10))
 (f2 <- factor(y))
 ```
@@ -30,17 +32,24 @@ in the resulting factor object.
 
 Factors have their own class: "factor".
 
+Our example input vectors are both atomic vectors: nothing new here.
+
 ```{r}
-# Factors have their own class
 class(x)
-class(f1)
 class(y)
+```
+
+Both `f1` and `f2`, however, are objects of the "factor" class.
+
+```{r}
+class(f1)
 class(f2)
 ```
 
 ## Attributes
 
-Factors have a "levels" attribute that stores the names of the groups represented by the factor.
+In addition to their class, factors have a "levels" attribute that stores the names of the groups represented by the
+factor.
 
 Since `x` and `y` are atomic vectors, they don't have any attributes.
 
@@ -56,54 +65,10 @@ attributes(f1)
 attributes(f2)
 ```
 
-## Vector Type
-
-Much like a matrix is just a vector with a *dim* attribute, a factor is just an integer vector with *levels* and *class*
-attributes.
-
-  - Regardless of the input vector's type, the data underlying the new factor will be an integer vector.
-
-As you'd expect, `x` and `y` have suitable atomic types (namely, integer and character).
-
-```{r}
-typeof(x)
-typeof(y)
-```
-
-But the factors `f1` and `f2` are both integer vectors, at their core: all factors are.
-
-```{r}
-typeof(f1)
-typeof(f2)
-```
-
-::: {.callout-important}
-
-Unlike vectors and matrices, we cannot freely revert a factor to its input vector by deleting the factor-specific
-attributes. In all but the most specialized cases, we'll loose information.
-
-:::
-
-Since `x` was originally an integer vector, this process seems to work for `f1`.
-
-```{r}
-attributes(f1) <- NULL
-f1
-identical(x, f1)
-```
-
-But we clearly loose information if we try to naively convert `f2` back to a vector.
-
-```{r}
-attributes(f2) <- NULL
-f2
-identical(y, f2)
-```
-
 ## Factor Levels
 
-The levels name the categories represented by the factor. By default, the `factor()` function will use the unique values
-of the input vector to name the levels of the resulting factor.
+A factor's levels name the categories represented by that factor. By default, the `factor()` function will use the
+unique values of the input vector to name the levels of the resulting factor.
 
 ```{r}
 levels(f1)
@@ -130,6 +95,104 @@ levels(f3)
 table(z, f3)
 ```
 
+### Nuances of Factor Level Mapping
+
+Sometimes, the way that the `factor()` function maps level names to the values of the input vector can be a bit
+confusing. Consider the following example.
+
+**Predict** what the following code will print.
+
+- Pay attention to the structure of the input vector and the order of the `labels` vector.
+
+```{webr-r}
+factor(
+  rep(c("foo", "bar", "baz"), 3),
+  labels = c("yes", "yes", "no")
+)
+```
+
+::: explanation
+
+If your prediction was not correct, I'm guessing you were probably expecting R to directly map the values in the
+`labels` vector to the values in the input vector and produce something like the following.
+
+```{r}
+#| echo: false
+
+factor(
+  rep(c("foo", "bar", "baz"), 3),
+  labels = c("yes", "no", "yes")
+)
+```
+
+This discrepancy comes from an intermediate step that R sneaks in when assigning factor levels. R sorts the unique
+values of the input vector *before* mapping the level names provided by the `labels` argument. So, the labels `c("yes",
+"yes" "no")` are matched with the *sorted* input values `c("bar", "baz", "foo")`.
+
+You may also have expected the duplicated `"yes"` values in the `labels` vector to cause problems, but R actually uses
+these duplicates to do something quite useful: *collapse groups*. The duplicated `"yes"` entries in `labels` correspond
+to the input values `"bar"` and `"baz"`, so R happily assigns all cases with input values `"bar"` or `"baz"` to the
+`"yes"` group.
+
+We can use this behavior to combine groups when creating new factors or modifying the levels of existing factors.
+
+```{r}
+drinks3 <-
+	drinks6 <- factor(
+		sample(c("coffee", "tea", "water", "juice", "beer", "wine"), 20, TRUE)
+	)
+levels(drinks3) <-
+	c("alcoholic", "caffeinated", "boring", "caffeinated", "boring", "alcoholic")
+
+table(drinks3, drinks6)
+```
+
+:::
+
+## Vector Type
+
+Much like a matrix is just a vector with a *dim* attribute, a factor is just an integer vector with *levels* and *class*
+attributes.
+
+  - Regardless of the input vector's type, the data underlying the new factor will be an integer vector.
+
+As you'd expect, `x` and `y` have suitable atomic types (namely, integer and character).
+
+```{r}
+typeof(x)
+typeof(y)
+```
+
+But the factors `f1` and `f2` are both integer vectors, at their core: all factors are.
+
+```{r}
+typeof(f1)
+typeof(f2)
+```
+
+::: {.callout-warning}
+
+Unlike vectors and matrices, we cannot freely revert a factor to its input vector by deleting the factor-specific
+attributes. In all but the most specialized cases, we'll loose information.
+
+Since `x` was originally an integer vector, this process seems to work for `f1`.
+
+```{r}
+attributes(f1) <- NULL
+f1
+identical(x, f1)
+```
+
+But we clearly loose information if we try to naively convert `f2` back to a vector.
+
+```{r}
+attributes(f2) <- NULL
+f2
+identical(y, f2)
+```
+
+:::
+
 ::: practice 
 
 Create a length-20 factor with two levels = {"yes", "no"}.
@@ -143,20 +206,31 @@ Create a length-20 factor with two levels = {"yes", "no"}.
 
 ## {{< var tab_title.solution >}}
 
-As usual, there are myriad acceptable solutions. Here are a couple possibilities.
+As usual, there are myriad acceptable solutions. Here are a few possibilities.
+
+When we provide a character vector as input, `factor()` will derive the level names from the unique values of the input
+vector.
 
 ```{r}
+factor(rep(c("yes", "no"), 10))
 factor(sample(c("yes", "no"), 20, TRUE))
+```
+
+Below, we provide various flavors of atomic vector as input and then use the `labels` argument to tell `factor()` how to map the
+integer values to factor levels.
+
+```{r}
 factor(sample(1:2, 20, TRUE), labels = c("yes", "no"))
+factor(rep(c(3.14, 1.96), each = 10), labels = c("no", "yes"))
 ```
 
 ::::
 
 :::
 
-## Quick Check
+::: knowledge-check
 
-- What three things does `factor()` always add to its input, regardless of what type the input was?
+- What attributes differentiate an integer vector from a factor?
 - What's stored under the hood: the category *names*, or numbers that map to those names?
 
 ```{webr-r}

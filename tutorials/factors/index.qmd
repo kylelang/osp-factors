@@ -8,8 +8,8 @@ affiliation. In R, we use *factors* to represent categorical variables in our da
 
 An R factor is a special kind of object that encodes a categorical variable's grouping information in a consistent way
 that R functions know how to handle. When we use a categorical variable as part of a statistical model or visualization,
-R needs to apply special processing so the variable correctly represents groups or levels. Factors trigger this special
-processing, so they are particularly important for modeling and plotting functions.
+R needs to apply special processing to make the variable correctly represent groups or levels. Factors trigger this
+special processing, so they are particularly important for modeling and plotting functions.
 
 ## Where Factors Fit
 
@@ -22,9 +22,8 @@ understand factors. Recall the hierarchy of data structures you've built up so f
 1. Data Frames (*seemingly* two-dimensional, mixed data types)
 
 Factors add to this hierarchy, but not by allowing more dimensions or more heterogeneous data. Rather, factors add
-*meaning* by incorporating additional metadata in the form of the *levels* and *contrast* attributes. These attributes
-tell R how to interpret the grouping structure represented by the factor (and, consequently, save you a bunch of manual
-data processing).
+*meaning* by incorporating additional metadata in the form of *levels* attribute that tells R how to
+interpret the grouping structure represented by the factor.
 
 ::: knowledge-check
 
