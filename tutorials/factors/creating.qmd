@@ -26,29 +26,58 @@ in the resulting factor object.
 - Factors have their own class: "factor".
 - Factors have a "levels" attribute that stores the names of the groups represented by the factor.
 - Factors use integer vectors to represent the grouping implied by the input vector.
-  - Regardless of the input vector's type, the data underlying the new factor will be an integer vector.
+  - Regardless of the input vector's type, the new factor will encode the group structure with an integer vector.
 
 ## Class
 
-Factors have their own class: "factor".
+Unlike atomic vectors, factors have their own class: *factor*.
 
-Our example input vectors are both atomic vectors: nothing new here.
+Our example input vectors, `x` and `y`, are both atomic vectors. So, their classes are the same as their atomic data
+type.
 
 ```{r}
 class(x)
 class(y)
 ```
 
-Both `f1` and `f2`, however, are objects of the "factor" class.
+Both `f1` and `f2`, however, are factors. So, their classes are both *factor*.
 
 ```{r}
 class(f1)
 class(f2)
 ```
 
+Actually, it would be more appropriate to say that `f1` and `f2` are factors *because* their class is *factor*. If
+you'll forgive the aggressive anthropomorphism, we could say that an object's class essentially defines what that object
+*is*, from R's perspective.
+
+<!--
+If we change a factor's class, the resulting object is no longer a factor, even though the new object may appear very
+similar to the original factor.
+
+```{r}
+f3 <- f1
+class(f3)
+f3
+
+class(f3) <- "numeric"
+f3
+is.factor(f3)
+```
+-->
+
+R uses an object's class to decide how to handle that object in various analyses. When we use a factor in some analysis,
+R recognizes the class attribute, and applies appropriate processing. For example, in the following code, we use the
+`Species` factor to define the x-axis of a boxplot. R interprets the factor as a group indicator and draws a conditional
+boxplot.
+
+```{r}
+boxplot(Petal.Width ~ Species, data = iris)
+```
+
 ## Attributes
 
-In addition to their class, factors have a "levels" attribute that stores the names of the groups represented by the
+In addition to their class, factors have a *levels* attribute that stores the names of the groups represented by the
 factor.
 
 Since `x` and `y` are atomic vectors, they don't have any attributes.
@@ -67,8 +96,9 @@ attributes(f2)
 
 ## Factor Levels
 
-A factor's levels name the categories represented by that factor. By default, the `factor()` function will use the
-unique values of the input vector to name the levels of the resulting factor.
+The *levels* attribute is one of a factor's most useful features because they add substantive meaning. A factor's levels
+name the categories represented by that factor. By default, the `factor()` function will use the unique values of the
+input vector to name the levels of the resulting factor.
 
 ```{r}
 levels(f1)
@@ -82,7 +112,12 @@ We can assign our own level names through the `labels` argument.
 
 (f3 <- factor(z, labels = c("Group 10", "Group 11")))
 levels(f3)
+```
 
+If we use the `table()` function to cross tabulate the factor `f3` and it's input vector `z`, we see how the unique
+values of `z` are matched with the levels we've defined for `f3`.
+
+```{r}
 table(z, f3)
 ```
 
@@ -91,7 +126,6 @@ We can also modify the levels of an existing factor.
 ```{r}
 levels(f3) <- c("g10", "g11")
 levels(f3)
-
 table(z, f3)
 ```
 
@@ -163,7 +197,8 @@ typeof(x)
 typeof(y)
 ```
 
-But the factors `f1` and `f2` are both integer vectors, at their core: all factors are.
+But the factors `f1` and `f2` are both integer vectors, at their core. Factors are really just ambitious integer vectors
+wearing fancy clothes.
 
 ```{r}
 typeof(f1)
@@ -216,12 +251,13 @@ factor(rep(c("yes", "no"), 10))
 factor(sample(c("yes", "no"), 20, TRUE))
 ```
 
-Below, we provide various flavors of atomic vector as input and then use the `labels` argument to tell `factor()` how to map the
-integer values to factor levels.
+Below, we provide various flavors of atomic vector as input and then use the `labels` argument to tell `factor()` how to
+map the unique input values to factor levels.
 
 ```{r}
 factor(sample(1:2, 20, TRUE), labels = c("yes", "no"))
 factor(rep(c(3.14, 1.96), each = 10), labels = c("no", "yes"))
+factor(sample(LETTERS[8:9], 20, TRUE), labels = c("yes", "no"))
 ```
 
 ::::
@@ -230,8 +266,7 @@ factor(rep(c(3.14, 1.96), each = 10), labels = c("no", "yes"))
 
 ::: knowledge-check
 
+- What are the three primary characteristics that define a factor?
 - What attributes differentiate an integer vector from a factor?
-- What's stored under the hood: the category *names*, or numbers that map to those names?
 
-```{webr-r}
-```
+:::
