@@ -1,57 +1,163 @@
 ---
-title: "When to Use a Factor"
+title: "When to Use Factors"
 ---
 
-::: {.callout-note}
-This page asks you to reason about *when* to reach for a factor, not how to build one.
-:::
-
-You now know how to create factors and how they differ from ordinary vectors internally. This page asks a different
-question: given some data, how do you decide whether it *should* be a factor in the first place?
+You now know how to create factors and how they differ from atomic vectors. This page asks a different
+question. How do you decide when to use a factor in your own data analysis projects?
 
 ## Good Candidates for Factors
 
-A variable is usually a good candidate for a factor when it represents **categories, not quantities**, even if
-those categories happen to be written as numbers. A few examples:
+At this point, it should come as no surprise when I tell you that R factors are meant to represent *nominal variables*.
+In other words, we use factors to represent unordered groups like the following.
 
-- **Nominal categories with no inherent order**, like `{"red", "blue", "green"}` or `{"male", "female",
-  "non-binary"}`.
-- **Ordinal categories with a meaningful order**, like `{"low", "medium", "high"}` or a Likert-scale response like
-  `{"strongly disagree", ..., "strongly agree"}`. (R factors can represent ordered categories too, via the `ordered`
-  argument to `factor()`, though we won't go deep into that here.)
-- **Numerically coded categories**, like a survey where `1` means "yes" and `2` means "no." Here the numbers are
-  really just category *labels* in disguise. Doing arithmetic on them (like averaging `1.4`) wouldn't mean
-  anything.
+- Political party affiliation: `{Democrat, Republican}`
+- Nationality: `{Dutch, Canadian, Japanese, Kenyan, Chilean}`
+- Biological classification: `{Mammal, Bird, Fish, Insect}`
+
+Factors are also appropriate representations of qualitative labels or the answer to questions with fixed response sets.
+
+- A student's exam success: `{Pass, Fail}`
+- A politician's vote for a bill: `{Support, Oppose, Abstain}`
+- The outcome from scoring an exam question: `{Correct, Incorrect}`
+
+### What about Ordered Categories?
+
+Basic R factors are not appropriate for *ordinal variables*. That is, qualitative variables with meaningful ordering
+like the following.
+
+- Responses to questionnaire items given on a Likert-type scale: `{Strongly Disagree, Somewhat Disagree, Somewhat
+Agree, Strongly Agree}`
+- Rankings (e.g., results of a running race): `{First, Second, Third}`
+
+For this kind of ordinal data, we can use an *ordered factor*. To create an ordered factor, you simply specify `ordered
+= TRUE` in the `factor()` function.
+
+```{r}
+medals <- factor(
+	sample(c("bronze", "silver", "gold"), 10, TRUE),
+	levels = c("bronze", "silver", "gold"),
+	ordered = TRUE
+)
+medals
+attributes(medals)
+```
 
 ## Poor Candidates for Factors
 
-On the other hand, don't reach for a factor just because a variable happens to take on a small number of distinct
-values. A few examples where a factor would be the *wrong* choice:
+Factors are great, but you must also be careful not to overgeneralize your use of factors. Of course, factors are never
+appropriate for numeric data that represent continuous quantities. However, a factor is not necessarily the right way to
+represent all variables that happen to take a small number of distinct values. The following examples illustrate common
+cases where a factor would be the *wrong* choice.
 
-- **A count**, like "number of children", even if most values fall between 0 and 4, this is a genuine quantity you
-  might want to average or add.
-- **A continuous measurement that happens to be rounded**, like a test score out of 100, you'd still want to do
-  arithmetic on this.
-- **An identifier**, like a participant ID number, while these aren't meaningfully "categories" in the usual sense,
-  they also aren't something you'd typically model or plot as groups, so a plain character or integer vector is
-  usually more appropriate.
+### Low Resolution Measurements
+
+When deciding whether or not to use a factor, you need to consider the measurement level of the hypothetical construct
+you're trying to represent, not how the values look in your data. For example, your data may contain the results of an
+IQ test scored on a 10-point scale. Although this item can only take 10 distinct values in your dataset, you probably
+wouldn't want to represent IQ with a factor. Presumably, the 10-point IQ score is meant to quantify continuously varying
+intelligence level. So, you're working with a low-resolution assessment of the underlying continuous variable, not a
+10-level categorical variable.
+
+### Unit Identifiers
+
+Most datasets contain identifier columns to uniquely label observational units (e.g., participant ID, school code,
+timestamp). These indicator variables certainly represent some sense of "grouping" but not usually the kinds of groups
+that you want to include as part of you substantive analysis. So, representing unit identifies as simple character
+vectors or integer vectors is usually more appropriate than using a factor.
+
+### Descriptive Strings
+
+In addition to various flavors of unit identifiers, most real-world datasets contain metadata fields like the
+participants' IP addresses, software version tags, or administrative information about research sites. Likewise, many
+datasets contain at least some semi-structured textual data represented as character vectors (e.g., responses to
+open-ended questions, text scraped from websites). It almost never makes sense to directly convert these types of
+descriptive data into factors. There may be substantively interesting grouping information hiding in such columns, but
+you have to manually code the raw data into some form of systematic grouping variable before you're ready to create any
+factors.
+
+## Gray Areas
+
+The choice of whether or not to use a factor is not always an obvious, black-and-white decision. Many cases, such as the
+following examples, fall into situationally dependent gray areas. In these kinds of situations, the focus of our
+analysis typically tells us whether we should use a factor or not.
+
+### Manually Coarsened Variables
+
+Sometimes, numeric data can be "coarsened" to create qualitative groups. We've already used several such cases in the
+examples above. Typically, to "pass" an exam, the examinee's score must exceed some threshold. In Dutch universities,
+that threshold would usually be a score of 5.5 on a 1-to-10 scale. So, the binary Pass/Fail factor noted above would
+typically be created by binning a continuous, numeric score.
+
+$$
+\begin{align}
+  \mathit{Success} =
+    \begin{cases}
+      \mathit{Fail} & \text{if} & \mathit{Score} < 5.5\\
+      \mathit{Pass} & \text{if} & \mathit{Score} \geq 5.5
+    \end{cases}
+\end{align}
+$$
+
+This type of manual coarsening is often used in biomedical contexts to simplify interpretation. Anytime medical guidance
+is presented in terms of a small set of disjoint groups, there's a good chance that the groups were defined by
+categorizing an underlying continuous variable. BMI categories are one commonly encountered example. Technically, BMI
+can take any positive value, but many public health organizations provide guidelines for "healthy" and "unhealthy" BMIs
+based on discrete ranges. For example, the World Health Organization defines six levels of *Nutritional Status* based on
+the following BMI ranges.
+
+$$
+\begin{align}
+  \mathit{Nutritional~Status} =
+    \begin{cases}
+      \mathit{Underweight}       & \text{if} &                     &      & \hspace{-14mu} \mathit{BMI} < 18.5\\
+      \mathit{Healthy~Weight}    & \text{if} & 18.5 \hspace{-18mu} & \geq & \hspace{-14mu} \mathit{BMI} < 25\\
+      \mathit{Overweight}        & \text{if} & 25                  & \geq & \hspace{-14mu} \mathit{BMI} < 30\\
+      \mathit{Obesity~Class~I}   & \text{if} & 30                  & \geq & \hspace{-14mu} \mathit{BMI} < 35\\
+      \mathit{Obesity~Class~II}  & \text{if} & 35                  & \geq & \hspace{-14mu} \mathit{BMI} < 40\\
+      \mathit{Obesity~Class~III} & \text{if} & 40                  & \geq & \hspace{-14mu} \mathit{BMI}
+    \end{cases}
+\end{align}
+$$
+
+### Counts
+
+A *count* variable records the number of discrete elements in a set---like the number of children in a family or the
+number of hurricanes in a year. Technically, counts are categorical variables because you can only count whole numbers
+of things (e.g., a family cannot include 2.75 children). However, we often want to analyze counts as numeric values. For
+example, it seems sensible to ask if the average number of children in Dutch families is different from the average
+number of children in Spanish families. In such cases, it would not be appropriate to convert the numeric count variable
+to a factor.
+
+We don't always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a
+count as an ordered factor. For example, a questionnaire item may ask participants to report how many alcoholic drinks
+they consume in a typical week or how many cigarettes they smoke each day. As posed, these questions illicit count
+responses, but the data are often binned into discrete ordinal categories like *none*, *a few per week*, *a few per
+day*, *more than ten per day*, etc. Self-reported consumption rates are notoriously poor, so analyzing these
+questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off
+accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution
+ordered factors.
+
+### Ordinal Variables
+
+Finally, let's consider a problem that's somewhat complementary to the situation with counts. Ordinal variables are
+unambiguously categorical, and ordered factors are the correct way to represent an ordinal variable in R. So, it may
+surprise you to hear that ordinal variables are analyzed as numeric vectors in most real-world analyses. Again, the main
+consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset. 
 
 ::: practice
 
-## Practice
+Consider the following four hypothetical variables.
 
-For each of the following variables, decide whether a factor would be an appropriate choice. Be ready to explain
-your reasoning.
-
-1. A column recording each survey respondent's marital status: `{"single", "married", "divorced", "widowed"}`.
+1. A column recording each survey respondent's marital status: `{single, married, divorced, widowed}`.
 1. A column recording each respondent's exact age in years.
 1. A column recording which of 3 experimental treatment groups each participant was assigned to.
 1. A column recording each respondent's annual income in dollars.
 
 :::: {.panel-tabset}
+
 ## {{< var tab_title.question >}}
 
-Think through each variable before checking the solution.
+Explain why (or why not) a factor would be an appropriate way to represent each variable.
 
 ## {{< var tab_title.solution >}}
 
@@ -61,23 +167,46 @@ Think through each variable before checking the solution.
    especially since this variable will likely be used in a statistical model later.
 1. **Not a factor.** Income is a continuous quantity, even though it might have a skewed distribution, you wouldn't
    want R to prevent you from computing a mean or a sum.
+
 ::::
 
 :::
 
-## Why This Distinction Matters
+## Much Ado about Nothing?
 
-Getting this right isn't just a matter of style. If you accidentally leave a categorical variable as plain numbers,
-statistical modeling functions may treat it as a continuous predictor (implying, incorrectly, that "group 2" is
-somehow "twice as much" as "group 1"). If you accidentally convert a genuine quantity into a factor, you'll lose the
-ability to do arithmetic on it, and many modeling and plotting functions will treat it as a set of unordered
-categories instead of a meaningful numeric scale. Choosing the right representation up front saves you from subtle,
-hard-to-diagnose errors later in an analysis.
+You may be wondering why we're making such a fuss about when you should and should not use factors. Well, in practice,
+getting this decision right isn't just a trivial matter of style. As you've seen on previous pages, if you try to
+analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying,
+incorrectly, that "group 2" is somehow "twice as much" as "group 1"). In the gray area situations discussed above, the
+choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of
+your results.
 
-## Quick Check
+Beyond these technical and pragmatic considerations, there's also a deeper level of implications. Statistical
+measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human
+subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our
+analysis can make very strong political statements.
 
-- Would you use a factor for a column recording customers' star ratings (1–5) on a product review site? What about a
-  column recording the *number* of reviews each product received? Explain the difference.
+For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistic education.
+However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally
+created construct. If you want to include a "gender" variable in your analysis, what operationalization will you use? If
+you don't want to endorse the concept of binary gender, you could create a three-level factor by adding a "non-binary"
+option, but you could also fully embrace gender fluidity by representing gender as a continuous numeric variable. Each
+of these options makes an implicit statement about the definition of "gender", and you must own that statement.
+
+Lest any sociologists or political scientists reading this start getting too smug, realize that you don't need to
+analyze person-level data to encounter fraught design decisions. Suppose you need to create a "nationality" indicator
+for a sample of East Asian participants. Do you label participants from Taiwan as Chinese? What if you need to create a
+"country" indicator for a sample from the Middle East. Do you represent Palestine as a country? At time of writing, both
+of these questions are highly contentious political issues, so you cannot simply defer to the consensus of the
+international community: you must choose, and your choice will have consequences. 
+
+::: knowledge-check
+
+- For what types of variables are factors most appropriate?
+- What are some examples of variables that you should not represent as factors?
+- Why is it not always obvious when you should use a factor?
+
+:::
 
 ::: {.callout-tip}
 
@@ -85,13 +214,11 @@ hard-to-diagnose errors later in an analysis.
 
 You've now completed the *Factors* module. You're ready to move on if you can:
 
-- Explain what makes a factor different from an ordinary numeric or character vector.
-- Generate a factor using `factor()`, and access or modify its levels.
+- Explain what makes a factor different from an ordinary atomic vector.
+- Generate a factor using `factor()` and access or modify its levels.
 - Explain why mathematical operations on a factor return `NA` instead of a number.
 - Decide, given a description of a variable, whether it should be represented as a factor.
 
-If any of these still feel shaky, revisit the relevant page above, or try the
-[Knowledge Quiz](/quizzes/factors/index.qmd) to pinpoint exactly where to focus. Once you're ready, head to the
-[Conclusion](/conclusion.qmd) page to find this module's hand-in assignment.
+Take the [Knowledge Quiz](/quizzes/factors/index.qmd) to assess your learning.
 
 :::
