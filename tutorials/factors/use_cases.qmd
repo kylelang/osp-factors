@@ -5,29 +5,76 @@ title: "When to Use Factors"
 You now know how to create factors and how they differ from atomic vectors. This page asks a different
 question. How do you decide when to use a factor in your own data analysis projects?
 
+::: going-further
+
+Fundamentally, the decision rule is very simple. **Use factors to represent *nominal variables.***
+
+If you remember to use factors for any unordered categorical variables in your dataset, you'll cover most practical
+use-cases. As with all design decisions, however, there are many nuances and special cases. This section explores this
+nuance and explains some of the most common caveats to the general rule of *nominal variable* $\rightarrow$ *R factor*.
+
+:::
+
 ## Good Candidates for Factors
 
-At this point, it should come as no surprise when I tell you that R factors are meant to represent *nominal variables*.
-In other words, we use factors to represent unordered groups like the following.
+<!--
+As noted above, R factors are meant to represent *nominal variables*. In other words, we use factors to represent
+unordered groups like the following.
 
 - Political party affiliation: `{Democrat, Republican}`
 - Nationality: `{Dutch, Canadian, Japanese, Kenyan, Chilean}`
 - Biological classification: `{Mammal, Bird, Fish, Insect}`
+- The 10 types of people: `{People who understand binary, Others}`
+-->
 
-Factors are also appropriate representations of qualitative labels or the answer to questions with fixed response sets.
+As noted above, R factors are meant to represent *nominal variables*. In other words, we use factors to represent
+unordered groups like the following.
 
-- A student's exam success: `{Pass, Fail}`
-- A politician's vote for a bill: `{Support, Oppose, Abstain}`
-- The outcome from scoring an exam question: `{Correct, Incorrect}`
+- Political party affiliation
+  - `Democrat`
+  - `Republican`
+- Nationality
+  - `Dutch`
+  - `Canadian`
+  - `Japanese`
+  - `Kenyan`
+  - `Chilean`
+- Biological classification
+  - `Mammal`
+  - `Bird`
+  - `Fish`
+  - `Insect`
+- The 10 types of people
+  - `People who understand binary`
+  - `Others`
+
+Factors are also appropriate representations of qualitative labels or answers to questions with fixed response sets.
+
+- A student's exam success:
+  - `Pass`
+  - `Fail`
+- A politician's vote for a bill
+  - `Support`
+  - `Oppose`
+  - `Abstain`
+- The result of a single quiz question
+  - `Correct`
+  - `Incorrect`
 
 ### What about Ordered Categories?
 
 Basic R factors are not appropriate for *ordinal variables*. That is, qualitative variables with meaningful ordering
 like the following.
 
-- Responses to questionnaire items given on a Likert-type scale: `{Strongly Disagree, Somewhat Disagree, Somewhat
-Agree, Strongly Agree}`
-- Rankings (e.g., results of a running race): `{First, Second, Third}`
+- Responses to questionnaire items given on a Likert-type scale
+  1. `Strongly Disagree`
+  1. `Somewhat Disagree`
+  1. `Somewhat Agree`
+  1. `Strongly Agree`
+- Rankings (e.g., results of a race)
+  1. `First`
+  1. `Second`
+  1. `Third`
 
 For this kind of ordinal data, we can use an *ordered factor*. To create an ordered factor, you simply specify `ordered
 = TRUE` in the `factor()` function.
@@ -119,6 +166,11 @@ $$
 \end{align}
 $$
 
+From the perspective of optimal statistical measurement, coarsening continuous variables in this way is often a bad
+idea, but that discussion falls well outside the scope of this tutorial. For our purposes, you should simply realize
+that you may encounter situations where the same underlying data can be represented as a numeric variable or a factor,
+depending on how you process those data.
+
 ### Counts
 
 A *count* variable records the number of discrete elements in a set---like the number of children in a family or the
@@ -129,20 +181,35 @@ number of children in Spanish families. In such cases, it would not be appropria
 to a factor.
 
 We don't always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a
-count as an ordered factor. For example, a questionnaire item may ask participants to report how many alcoholic drinks
-they consume in a typical week or how many cigarettes they smoke each day. As posed, these questions illicit count
-responses, but the data are often binned into discrete ordinal categories like *none*, *a few per week*, *a few per
-day*, *more than ten per day*, etc. Self-reported consumption rates are notoriously poor, so analyzing these
-questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off
-accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution
-ordered factors.
+count as an ordered factor. For example, a questionnaire item may ask participants to report how many  cigarettes they
+smoke each day. As posed, this question elicits count responses, but the data are often binned into discrete ordinal
+categories like *none*, *a few per week*, *several per day*, etc. Self-reported consumption rates are notoriously poor,
+so analyzing these questionnaire responses as numeric counts may lead to spurious precision and misleading results. We
+may be better off accepting the inherent noise of our measurement and purposefully coarsening the counts into
+appropriately low-resolution ordered factors.
 
 ### Ordinal Variables
 
 Finally, let's consider a problem that's somewhat complementary to the situation with counts. Ordinal variables are
-unambiguously categorical, and ordered factors are the correct way to represent an ordinal variable in R. So, it may
-surprise you to hear that ordinal variables are analyzed as numeric vectors in most real-world analyses. Again, the main
-consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset. 
+unambiguously categorical, and ordered factors are absolutely the correct way to represent an ordinal variable in R. So,
+it may surprise you to hear that ordered factors are not used very frequently in real-world analyses. Again, the main
+consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset.
+Surveys and questionnaires often include various self-reported rating scales like the following examples.
+
+- [HEXACO Personality Inventory](https://hexaco.org/hexaco-inventory)
+- [Strengths and Difficulties Questionnaire](https://doi.org/10.1111/j.1469-7610.1997.tb01545.x)
+- [Climate Change Anxiety Scale](https://pmc.ncbi.nlm.nih.gov/articles/PMC12752920/)
+
+These scales produce ordinal data, but the items are not meant to be analyzed independently. Rather, we're supposed to
+aggregate the individual items into so-called *scale scores* (e.g., by averaging the responses). In such cases, we
+clearly cannot represent the individual items as ordered factors, since we cannot compute the mean of a set of ordered
+factors. 
+
+In situations where our analysis will maintain the ordinal nature of a given variable, however, it would be appropriate
+to represent that variable as an ordered factor. For example, we may wish to evaluate risk factors for obesity in
+adults. We could use a proportional odds logistic regression model wherein the *Nutritional Status* variable described
+above acts as the outcome variable, and variables quantifying risk factors act as predictors. In this analysis, we
+should format *Nutritional Status* as an ordered factor.
 
 ::: practice
 
@@ -174,31 +241,34 @@ Explain why (or why not) a factor would be an appropriate way to represent each 
 
 ## Much Ado about Nothing?
 
-You may be wondering why we're making such a fuss about when you should and should not use factors. Well, in practice,
-getting this decision right isn't just a trivial matter of style. As you've seen on previous pages, if you try to
-analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying,
-incorrectly, that "group 2" is somehow "twice as much" as "group 1"). In the gray area situations discussed above, the
-choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of
-your results.
+You may be wondering why we're making such a fuss about when to use factors. Well, in practice, getting this decision
+right isn't just a trivial matter of style. As you've seen on previous pages, if you try to analyze a nominal variable
+as a numeric vector, R will assume that variable represents some continuous value (implying, incorrectly, that *Group 2*
+is somehow "twice as much" as *Group 1*). Accidentally converting a continuous, numeric variable into a factor creates
+even more obvious problems, since R won't do any numeric calculations with that variable anymore. Furthermore, the gray
+area situations discussed above pose tricky, situationally dependent questions that you must answer within the context
+of a given project. Here, you're not concerned about completely breaking your analysis. Rather, the choice of whether or
+not to use a factor directly affects the formulation of your research question and the meaning of your results.
 
-Beyond these technical and pragmatic considerations, there's also a deeper level of implications. Statistical
+Beyond these technical and pragmatic considerations, there's also a deeper level of implications to consider. Statistical
 measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human
 subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our
-analysis can make very strong political statements.
+analysis can make very strong political, philosophical, or ethical statements.
 
-For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistic education.
+For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistics education.
 However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally
 created construct. If you want to include a "gender" variable in your analysis, what operationalization will you use? If
 you don't want to endorse the concept of binary gender, you could create a three-level factor by adding a "non-binary"
-option, but you could also fully embrace gender fluidity by representing gender as a continuous numeric variable. Each
-of these options makes an implicit statement about the definition of "gender", and you must own that statement.
+option, but you could also fully embrace a fluid conceptualization of gender by representing gender as a continuous
+numeric variable. Each of these options makes an implicit statement about the definition of "gender", and you're
+implicitly endorsing that statement by choosing a particular operationalization.
 
 Lest any sociologists or political scientists reading this start getting too smug, realize that you don't need to
 analyze person-level data to encounter fraught design decisions. Suppose you need to create a "nationality" indicator
-for a sample of East Asian participants. Do you label participants from Taiwan as Chinese? What if you need to create a
-"country" indicator for a sample from the Middle East. Do you represent Palestine as a country? At time of writing, both
-of these questions are highly contentious political issues, so you cannot simply defer to the consensus of the
-international community: you must choose, and your choice will have consequences. 
+for a sample of East Asian participants. Do you classify participants from Taiwan as Chinese? What if you need to create
+a "country" indicator for a sample from Western Asia. Do you represent Palestine as an independent country? At time of
+writing, both of these questions are highly contentious political issues, so you cannot naïvely defer to the consensus
+of the international community. You must choose, and your choice will have consequences.
 
 ::: knowledge-check
 

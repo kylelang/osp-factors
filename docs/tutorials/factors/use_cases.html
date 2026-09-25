@@ -105,17 +105,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-going-further.callout {
-  border-left-color: #B58900;
+div.callout-reading-advanced.callout {
+  border-left-color: red;
 }
-div.callout-going-further.callout-style-default > .callout-header {
-  background-color: rgba(181, 137, 0, 0.13);
+div.callout-reading-advanced.callout-style-default > .callout-header {
+  background-color: rgb(from red r g b / 13%);
 }
-div.callout-going-further .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-going-further.callout-style-default .callout-icon::before, div.callout-going-further.callout-titled .callout-icon::before {
+div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
-  content: '\f4d7' !important;
+  content: '\f518' !important;
+  background-image: none;
+}
+div.callout-resource.callout {
+  border-left-color: orange;
+}
+div.callout-resource.callout-style-default > .callout-header {
+  background-color: rgb(from orange r g b / 13%);
+}
+div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f0c1' !important;
+  background-image: none;
+}
+div.callout-reading.callout {
+  border-left-color: violet;
+}
+div.callout-reading.callout-style-default > .callout-header {
+  background-color: rgb(from violet r g b / 13%);
+}
+div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
   background-image: none;
 }
 div.callout-explanation.callout {
@@ -144,17 +170,17 @@ div.callout-common-mistakes.callout-style-default .callout-icon::before, div.cal
   content: '\f188' !important;
   background-image: none;
 }
-div.callout-resource.callout {
-  border-left-color: orange;
+div.callout-knowledge-check.callout {
+  border-left-color: #368FFF;
 }
-div.callout-resource.callout-style-default > .callout-header {
-  background-color: rgb(from orange r g b / 13%);
+div.callout-knowledge-check.callout-style-default > .callout-header {
+  background-color: rgba(54, 143, 255, 0.13);
 }
-div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
+div.callout-knowledge-check .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-knowledge-check.callout-style-default .callout-icon::before, div.callout-knowledge-check.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
-  content: '\f0c1' !important;
+  content: '\f044' !important;
   background-image: none;
 }
 div.callout-completion-time.callout {
@@ -170,45 +196,6 @@ div.callout-completion-time.callout-style-default .callout-icon::before, div.cal
   content: '\f2f2' !important;
   background-image: none;
 }
-div.callout-reading.callout {
-  border-left-color: violet;
-}
-div.callout-reading.callout-style-default > .callout-header {
-  background-color: rgb(from violet r g b / 13%);
-}
-div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
-div.callout-knowledge-check.callout {
-  border-left-color: #368FFF;
-}
-div.callout-knowledge-check.callout-style-default > .callout-header {
-  background-color: rgba(54, 143, 255, 0.13);
-}
-div.callout-knowledge-check .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-knowledge-check.callout-style-default .callout-icon::before, div.callout-knowledge-check.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f044' !important;
-  background-image: none;
-}
-div.callout-reading-advanced.callout {
-  border-left-color: red;
-}
-div.callout-reading-advanced.callout-style-default > .callout-header {
-  background-color: rgb(from red r g b / 13%);
-}
-div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
 div.callout-practice.callout {
   border-left-color: green;
 }
@@ -220,6 +207,19 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f085' !important;
+  background-image: none;
+}
+div.callout-going-further.callout {
+  border-left-color: #B58900;
+}
+div.callout-going-further.callout-style-default > .callout-header {
+  background-color: rgba(181, 137, 0, 0.13);
+}
+div.callout-going-further .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-going-further.callout-style-default .callout-icon::before, div.callout-going-further.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f4d7' !important;
   background-image: none;
 }
 </style>
@@ -415,26 +415,95 @@ window.Quarto = {
 
 
 <p>You now know how to create factors and how they differ from atomic vectors. This page asks a different question. How do you decide when to use a factor in your own data analysis projects?</p>
+<div class="callout callout-style-default callout-going-further callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Going Further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Fundamentally, the decision rule is very simple. <strong>Use factors to represent <em>nominal variables.</em></strong></p>
+<p>If you remember to use factors for any unordered categorical variables in your dataset, you’ll cover most practical use-cases. As with all design decisions, however, there are many nuances and special cases. This section explores this nuance and explains some of the most common caveats to the general rule of <em>nominal variable</em> <span class="math inline">\(\rightarrow\)</span> <em>R factor</em>.</p>
+</div>
+</div>
 <section id="good-candidates-for-factors" class="level2">
 <h2 class="anchored" data-anchor-id="good-candidates-for-factors">Good Candidates for Factors</h2>
-<p>At this point, it should come as no surprise when I tell you that R factors are meant to represent <em>nominal variables</em>. In other words, we use factors to represent unordered groups like the following.</p>
+<!--
+As noted above, R factors are meant to represent *nominal variables*. In other words, we use factors to represent
+unordered groups like the following.
+
+- Political party affiliation: `{Democrat, Republican}`
+- Nationality: `{Dutch, Canadian, Japanese, Kenyan, Chilean}`
+- Biological classification: `{Mammal, Bird, Fish, Insect}`
+- The 10 types of people: `{People who understand binary, Others}`
+-->
+<p>As noted above, R factors are meant to represent <em>nominal variables</em>. In other words, we use factors to represent unordered groups like the following.</p>
 <ul>
-<li>Political party affiliation: <code>{Democrat, Republican}</code></li>
-<li>Nationality: <code>{Dutch, Canadian, Japanese, Kenyan, Chilean}</code></li>
-<li>Biological classification: <code>{Mammal, Bird, Fish, Insect}</code></li>
+<li>Political party affiliation
+<ul>
+<li><code>Democrat</code></li>
+<li><code>Republican</code></li>
+</ul></li>
+<li>Nationality
+<ul>
+<li><code>Dutch</code></li>
+<li><code>Canadian</code></li>
+<li><code>Japanese</code></li>
+<li><code>Kenyan</code></li>
+<li><code>Chilean</code></li>
+</ul></li>
+<li>Biological classification
+<ul>
+<li><code>Mammal</code></li>
+<li><code>Bird</code></li>
+<li><code>Fish</code></li>
+<li><code>Insect</code></li>
+</ul></li>
+<li>The 10 types of people
+<ul>
+<li><code>People who understand binary</code></li>
+<li><code>Others</code></li>
+</ul></li>
 </ul>
-<p>Factors are also appropriate representations of qualitative labels or the answer to questions with fixed response sets.</p>
+<p>Factors are also appropriate representations of qualitative labels or answers to questions with fixed response sets.</p>
 <ul>
-<li>A student’s exam success: <code>{Pass, Fail}</code></li>
-<li>A politician’s vote for a bill: <code>{Support, Oppose, Abstain}</code></li>
-<li>The outcome from scoring an exam question: <code>{Correct, Incorrect}</code></li>
+<li>A student’s exam success:
+<ul>
+<li><code>Pass</code></li>
+<li><code>Fail</code></li>
+</ul></li>
+<li>A politician’s vote for a bill
+<ul>
+<li><code>Support</code></li>
+<li><code>Oppose</code></li>
+<li><code>Abstain</code></li>
+</ul></li>
+<li>The result of a single quiz question
+<ul>
+<li><code>Correct</code></li>
+<li><code>Incorrect</code></li>
+</ul></li>
 </ul>
 <section id="what-about-ordered-categories" class="level3">
 <h3 class="anchored" data-anchor-id="what-about-ordered-categories">What about Ordered Categories?</h3>
 <p>Basic R factors are not appropriate for <em>ordinal variables</em>. That is, qualitative variables with meaningful ordering like the following.</p>
 <ul>
-<li>Responses to questionnaire items given on a Likert-type scale: <code>{Strongly Disagree, Somewhat Disagree, Somewhat Agree, Strongly Agree}</code></li>
-<li>Rankings (e.g., results of a running race): <code>{First, Second, Third}</code></li>
+<li>Responses to questionnaire items given on a Likert-type scale
+<ol type="1">
+<li><code>Strongly Disagree</code></li>
+<li><code>Somewhat Disagree</code></li>
+<li><code>Somewhat Agree</code></li>
+<li><code>Strongly Agree</code></li>
+</ol></li>
+<li>Rankings (e.g., results of a race)
+<ol type="1">
+<li><code>First</code></li>
+<li><code>Second</code></li>
+<li><code>Third</code></li>
+</ol></li>
 </ul>
 <p>For this kind of ordinal data, we can use an <em>ordered factor</em>. To create an ordered factor, you simply specify <code>ordered = TRUE</code> in the <code>factor()</code> function.</p>
 <div class="cell" data-layout-align="center">
@@ -445,7 +514,7 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>medals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] silver gold   silver silver gold   silver bronze silver gold   silver
+<pre><code> [1] bronze bronze silver bronze gold   gold   gold   silver silver gold  
 Levels: bronze &lt; silver &lt; gold</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(medals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -504,15 +573,23 @@ $class
     \end{cases}
 \end{align}
 \]</span></p>
+<p>From the perspective of optimal statistical measurement, coarsening continuous variables in this way is often a bad idea, but that discussion falls well outside the scope of this tutorial. For our purposes, you should simply realize that you may encounter situations where the same underlying data can be represented as a numeric variable or a factor, depending on how you process those data.</p>
 </section>
 <section id="counts" class="level3">
 <h3 class="anchored" data-anchor-id="counts">Counts</h3>
 <p>A <em>count</em> variable records the number of discrete elements in a set—like the number of children in a family or the number of hurricanes in a year. Technically, counts are categorical variables because you can only count whole numbers of things (e.g., a family cannot include 2.75 children). However, we often want to analyze counts as numeric values. For example, it seems sensible to ask if the average number of children in Dutch families is different from the average number of children in Spanish families. In such cases, it would not be appropriate to convert the numeric count variable to a factor.</p>
-<p>We don’t always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a count as an ordered factor. For example, a questionnaire item may ask participants to report how many alcoholic drinks they consume in a typical week or how many cigarettes they smoke each day. As posed, these questions illicit count responses, but the data are often binned into discrete ordinal categories like <em>none</em>, <em>a few per week</em>, <em>a few per day</em>, <em>more than ten per day</em>, etc. Self-reported consumption rates are notoriously poor, so analyzing these questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution ordered factors.</p>
+<p>We don’t always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a count as an ordered factor. For example, a questionnaire item may ask participants to report how many cigarettes they smoke each day. As posed, this question elicits count responses, but the data are often binned into discrete ordinal categories like <em>none</em>, <em>a few per week</em>, <em>several per day</em>, etc. Self-reported consumption rates are notoriously poor, so analyzing these questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution ordered factors.</p>
 </section>
 <section id="ordinal-variables" class="level3">
 <h3 class="anchored" data-anchor-id="ordinal-variables">Ordinal Variables</h3>
-<p>Finally, let’s consider a problem that’s somewhat complementary to the situation with counts. Ordinal variables are unambiguously categorical, and ordered factors are the correct way to represent an ordinal variable in R. So, it may surprise you to hear that ordinal variables are analyzed as numeric vectors in most real-world analyses. Again, the main consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset.</p>
+<p>Finally, let’s consider a problem that’s somewhat complementary to the situation with counts. Ordinal variables are unambiguously categorical, and ordered factors are absolutely the correct way to represent an ordinal variable in R. So, it may surprise you to hear that ordered factors are not used very frequently in real-world analyses. Again, the main consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset. Surveys and questionnaires often include various self-reported rating scales like the following examples.</p>
+<ul>
+<li><a href="https://hexaco.org/hexaco-inventory">HEXACO Personality Inventory</a></li>
+<li><a href="https://doi.org/10.1111/j.1469-7610.1997.tb01545.x">Strengths and Difficulties Questionnaire</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12752920/">Climate Change Anxiety Scale</a></li>
+</ul>
+<p>These scales produce ordinal data, but the items are not meant to be analyzed independently. Rather, we’re supposed to aggregate the individual items into so-called <em>scale scores</em> (e.g., by averaging the responses). In such cases, we clearly cannot represent the individual items as ordered factors, since we cannot compute the mean of a set of ordered factors.</p>
+<p>In situations where our analysis will maintain the ordinal nature of a given variable, however, it would be appropriate to represent that variable as an ordered factor. For example, we may wish to evaluate risk factors for obesity in adults. We could use a proportional odds logistic regression model wherein the <em>Nutritional Status</em> variable described above acts as the outcome variable, and variables quantifying risk factors act as predictors. In this analysis, we should format <em>Nutritional Status</em> as an ordered factor.</p>
 <div class="callout callout-style-default callout-practice callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -552,10 +629,10 @@ Practice
 </section>
 <section id="much-ado-about-nothing" class="level2">
 <h2 class="anchored" data-anchor-id="much-ado-about-nothing">Much Ado about Nothing?</h2>
-<p>You may be wondering why we’re making such a fuss about when you should and should not use factors. Well, in practice, getting this decision right isn’t just a trivial matter of style. As you’ve seen on previous pages, if you try to analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying, incorrectly, that “group 2” is somehow “twice as much” as “group 1”). In the gray area situations discussed above, the choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of your results.</p>
-<p>Beyond these technical and pragmatic considerations, there’s also a deeper level of implications. Statistical measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our analysis can make very strong political statements.</p>
-<p>For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistic education. However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally created construct. If you want to include a “gender” variable in your analysis, what operationalization will you use? If you don’t want to endorse the concept of binary gender, you could create a three-level factor by adding a “non-binary” option, but you could also fully embrace gender fluidity by representing gender as a continuous numeric variable. Each of these options makes an implicit statement about the definition of “gender”, and you must own that statement.</p>
-<p>Lest any sociologists or political scientists reading this start getting too smug, realize that you don’t need to analyze person-level data to encounter fraught design decisions. Suppose you need to create a “nationality” indicator for a sample of East Asian participants. Do you label participants from Taiwan as Chinese? What if you need to create a “country” indicator for a sample from the Middle East. Do you represent Palestine as a country? At time of writing, both of these questions are highly contentious political issues, so you cannot simply defer to the consensus of the international community: you must choose, and your choice will have consequences.</p>
+<p>You may be wondering why we’re making such a fuss about when to use factors. Well, in practice, getting this decision right isn’t just a trivial matter of style. As you’ve seen on previous pages, if you try to analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying, incorrectly, that <em>Group 2</em> is somehow “twice as much” as <em>Group 1</em>). Accidentally converting a continuous, numeric variable into a factor creates even more obvious problems, since R won’t do any numeric calculations with that variable anymore. Furthermore, the gray area situations discussed above pose tricky, situationally dependent questions that you must answer within the context of a given project. Here, you’re not concerned about completely breaking your analysis. Rather, the choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of your results.</p>
+<p>Beyond these technical and pragmatic considerations, there’s also a deeper level of implications to consider. Statistical measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our analysis can make very strong political, philosophical, or ethical statements.</p>
+<p>For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistics education. However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally created construct. If you want to include a “gender” variable in your analysis, what operationalization will you use? If you don’t want to endorse the concept of binary gender, you could create a three-level factor by adding a “non-binary” option, but you could also fully embrace a fluid conceptualization of gender by representing gender as a continuous numeric variable. Each of these options makes an implicit statement about the definition of “gender”, and you’re implicitly endorsing that statement by choosing a particular operationalization.</p>
+<p>Lest any sociologists or political scientists reading this start getting too smug, realize that you don’t need to analyze person-level data to encounter fraught design decisions. Suppose you need to create a “nationality” indicator for a sample of East Asian participants. Do you classify participants from Taiwan as Chinese? What if you need to create a “country” indicator for a sample from Western Asia. Do you represent Palestine as an independent country? At time of writing, both of these questions are highly contentious political issues, so you cannot naïvely defer to the consensus of the international community. You must choose, and your choice will have consequences.</p>
 <div class="callout callout-style-default callout-knowledge-check callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
