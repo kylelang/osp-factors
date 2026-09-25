@@ -9,7 +9,7 @@ title: "Knowledge Quiz: Factors"
 exams2forms::exams2forms(
   file = list(
     "factor_levels.Rmd",
-    "vs_atomic_vectors.Rmd",
+    "arithmetic.Rmd",
     "use_case_reasoning.Rmd"
   ),
   edir = here::here("quizzes", "factors", "questions")

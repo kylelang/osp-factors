@@ -109,7 +109,7 @@ intelligence level. So, you're working with a low-resolution assessment of the u
 
 Most datasets contain identifier columns to uniquely label observational units (e.g., participant ID, school code,
 timestamp). These indicator variables certainly represent some sense of "grouping" but not usually the kinds of groups
-that you want to include as part of you substantive analysis. So, representing unit identifies as simple character
+that you want to include as part of your substantive analysis. So, representing unit identifies as simple character
 vectors or integer vectors is usually more appropriate than using a factor.
 
 ### Descriptive Strings
