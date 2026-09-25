@@ -69,6 +69,45 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
+div.callout-reading.callout {
+  border-left-color: violet;
+}
+div.callout-reading.callout-style-default > .callout-header {
+  background-color: rgb(from violet r g b / 13%);
+}
+div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
+  background-image: none;
+}
+div.callout-going-further.callout {
+  border-left-color: #B58900;
+}
+div.callout-going-further.callout-style-default > .callout-header {
+  background-color: rgba(181, 137, 0, 0.13);
+}
+div.callout-going-further .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-going-further.callout-style-default .callout-icon::before, div.callout-going-further.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f4d7' !important;
+  background-image: none;
+}
+div.callout-resource.callout {
+  border-left-color: orange;
+}
+div.callout-resource.callout-style-default > .callout-header {
+  background-color: rgb(from orange r g b / 13%);
+}
+div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f0c1' !important;
+  background-image: none;
+}
 div.callout-explanation.callout {
   border-left-color: violet;
 }
@@ -95,17 +134,17 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
   content: '\f085' !important;
   background-image: none;
 }
-div.callout-reading.callout {
-  border-left-color: violet;
+div.callout-common-mistakes.callout {
+  border-left-color: #B01919;
 }
-div.callout-reading.callout-style-default > .callout-header {
-  background-color: rgb(from violet r g b / 13%);
+div.callout-common-mistakes.callout-style-default > .callout-header {
+  background-color: rgba(176, 25, 25, 0.13);
 }
-div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
+div.callout-common-mistakes .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-common-mistakes.callout-style-default .callout-icon::before, div.callout-common-mistakes.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
-  content: '\f518' !important;
+  content: '\f188' !important;
   background-image: none;
 }
 div.callout-knowledge-check.callout {
@@ -134,19 +173,6 @@ div.callout-completion-time.callout-style-default .callout-icon::before, div.cal
   content: '\f2f2' !important;
   background-image: none;
 }
-div.callout-going-further.callout {
-  border-left-color: #B58900;
-}
-div.callout-going-further.callout-style-default > .callout-header {
-  background-color: rgba(181, 137, 0, 0.13);
-}
-div.callout-going-further .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-going-further.callout-style-default .callout-icon::before, div.callout-going-further.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f4d7' !important;
-  background-image: none;
-}
 div.callout-reading-advanced.callout {
   border-left-color: red;
 }
@@ -158,32 +184,6 @@ div.callout-reading-advanced.callout-style-default .callout-icon::before, div.ca
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f518' !important;
-  background-image: none;
-}
-div.callout-common-mistakes.callout {
-  border-left-color: #B01919;
-}
-div.callout-common-mistakes.callout-style-default > .callout-header {
-  background-color: rgba(176, 25, 25, 0.13);
-}
-div.callout-common-mistakes .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-common-mistakes.callout-style-default .callout-icon::before, div.callout-common-mistakes.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f188' !important;
-  background-image: none;
-}
-div.callout-resource.callout {
-  border-left-color: orange;
-}
-div.callout-resource.callout-style-default > .callout-header {
-  background-color: rgb(from orange r g b / 13%);
-}
-div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f0c1' !important;
   background-image: none;
 }
 </style>
@@ -280,7 +280,7 @@ div.callout-resource.callout-style-default .callout-icon::before, div.callout-re
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../tutorials/factors/use_cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">When to Use a Factor</span></a>
+ <span class="menu-text">When to Use Factors</span></a>
   </div>
 </li>
       </ul>
@@ -324,25 +324,29 @@ div.callout-resource.callout-style-default .callout-icon::before, div.callout-re
 
 <section id="question" class="level1">
 <h1>Question</h1>
-<p><code>f &lt;- factor(c("1", "2", "3"))</code> creates a factor whose levels look like numbers. Which of the following correctly predicts and explains what <code>f + 1</code> returns?</p>
+<p>The command <code>f &lt;- factor(30:32)</code> creates a factor with levels <code>"30", "31", "32"</code>. What will the expression <code>f - 10</code> return?</p>
+<p>Choose the answer with the most appropriate justification.</p>
 <section id="answerlist" class="level2">
 <h2 class="anchored" data-anchor-id="answerlist">Answerlist</h2>
 <ul>
-<li>It returns <code>NA</code> for every element, because factors aren’t numeric. Arithmetic on a factor doesn’t have a meaningful definition, regardless of what the level names look like.</li>
-<li>It returns <code>c(2, 3, 4)</code>, because R converts the level names to numbers before adding.</li>
-<li>It returns an error that stops execution, because R refuses to evaluate the expression at all.</li>
-<li>It returns <code>c("1", "2", "3", 1)</code>, appending the <code>1</code> to the factor’s levels.</li>
-<li>It returns <code>f</code> unchanged, since adding <code>1</code> to a factor has no effect.</li>
+<li><code>NA, NA, NA</code>, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.</li>
+<li><code>NA</code>, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.</li>
+<li><code>NA, NA, NA</code>, because factor level names are character vectors, and arithmetic on character vectors isn’t well-defined.</li>
+<li><code>20, 21, 22</code>, because R converts the factor levels to numeric values before doing any arithmetic.</li>
+<li><code>"20", "21", "22"</code>, because R first computes the difference and then converts answer to a character vector.</li>
+<li><code>-9, -8, -7</code>, because R converts the factor levels to numeric values before doing any arithmetic.</li>
+<li><code>"30", "31", "32"</code>, because R returns <code>f</code> unchanged, since arithmetic with factors is not well-defined.</li>
+<li>The expression will return an error, because R refuses to do arithmetic with factors.</li>
 </ul>
 </section>
 </section>
 <section id="solution" class="level1">
 <h1>Solution</h1>
-<p>Even though this factor’s level <em>names</em> happen to look like numbers, a factor is never numeric under the hood. It’s an integer vector of category codes plus a <code>levels</code> attribute, with its own dedicated class. R won’t guess that you meant to convert the level names to numbers first; arithmetic on a factor simply isn’t defined, so every element of the result becomes a missing value, <code>NA</code>, rather than raising a hard error or silently doing something unintended.</p>
+<p>Even though this factor’s level <em>names</em> happen to look like numbers, arithmetic on a factor simply isn’t possible. R doesn’t know how to implement the calculation we’ve requested, so every element of the result becomes a missing value, <code>NA</code>. A missing value is a datum for which we don’t know the true value. In this case, R uses the missing values to say, “I don’t have enough information to say what the answer should be.”</p>
 </section>
 <section id="meta-information" class="level1">
 <h1>Meta-information</h1>
-<p>exname: Factors vs Atomic Vectors extype: schoice exsolution: 10000 exshuffle: TRUE</p>
+<p>exname: Arithmetic with Factors extype: schoice exsolution: 10000000 exshuffle: 5</p>
 
 
 </section>

@@ -1,27 +1,35 @@
 Question
 ========
-`f <- factor(c("1", "2", "3"))` creates a factor whose levels look like numbers. Which of the following correctly
-predicts and explains what `f + 1` returns?
+
+The command `f <- factor(30:32)` creates a factor with levels `"30", "31", "32"`. What will the expression `f - 10`
+return?
+
+Choose the answer with the most appropriate justification.
 
 Answerlist
 ----------
-* It returns `NA` for every element, because factors aren't numeric. Arithmetic on a factor doesn't have a
-  meaningful definition, regardless of what the level names look like.
-* It returns `c(2, 3, 4)`, because R converts the level names to numbers before adding.
-* It returns an error that stops execution, because R refuses to evaluate the expression at all.
-* It returns `c("1", "2", "3", 1)`, appending the `1` to the factor's levels.
-* It returns `f` unchanged, since adding `1` to a factor has no effect.
+
+* `NA, NA, NA`, because arithmetic on factors isn't well-defined, so there is no unambiguous solution.
+* `NA`, because arithmetic on factors isn't well-defined, so there is no unambiguous solution.
+* `NA, NA, NA`, because factor level names are character vectors, and arithmetic on character vectors isn't well-defined.
+* `20, 21, 22`, because R converts the factor levels to numeric values before doing any arithmetic.
+* `"20", "21", "22"`, because R first computes the difference and then converts answer to a character vector.
+* `-9, -8, -7`, because R converts the factor levels to numeric values before doing any arithmetic.
+* `"30", "31", "32"`, because R returns `f` unchanged, since arithmetic with factors is not well-defined.
+* The expression will return an error, because R refuses to do arithmetic with factors.
 
 Solution
 ========
-Even though this factor's level *names* happen to look like numbers, a factor is never numeric under the hood. It's
-an integer vector of category codes plus a `levels` attribute, with its own dedicated class. R won't guess that you
-meant to convert the level names to numbers first; arithmetic on a factor simply isn't defined, so every element of
-the result becomes a missing value, `NA`, rather than raising a hard error or silently doing something unintended.
+
+Even though this factor's level *names* happen to look like numbers, arithmetic on a factor simply isn't possible. R
+doesn't know how to implement the calculation we've requested, so every element of the result becomes a missing value,
+`NA`. A missing value is a datum for which we don't know the true value. In this case, R uses the missing values to say,
+"I don't have enough information to say what the answer should be."
 
 Meta-information
 ================
-exname: Factors vs Atomic Vectors
+
+exname: Arithmetic with Factors
 extype: schoice
-exsolution: 10000
-exshuffle: TRUE
+exsolution: 10000000
+exshuffle: 5

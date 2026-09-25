@@ -1,29 +1,36 @@
 Question
 ========
-You're preparing a dataset with a column called `group`, where each value is either `1`, `2`, or `3`, representing
-which of three experimental treatment conditions each participant received (the numbers are arbitrary labels, not
-measurements). Should this column be a factor?
+
+You're preparing a dataset that contains a column called `group` representing which of three experimental treatment
+conditions each participant received. Each entry in the `group` column is either `1`, `2`, or `3` (these numbers are
+arbitrary labels, not quantitative measurements). Should this column be a factor?
+
+Choose the answer with the most appropriate justification.
 
 Answerlist
 ----------
-* Yes — the values represent unordered categories, even though they're written as numbers, which is exactly the
-  situation a factor is designed for.
-* No — since the values are numeric, they should always be left as a plain numeric vector.
-* Yes — but only because there happen to be exactly three groups.
-* No — factors can only be created from character data, never from numbers.
-* It doesn't matter, since factors and numeric vectors behave identically in statistical models.
+
+* **Yes**, because the values represent unordered categories.
+* **Yes**, because the values are integers and not decimal valued numbers.
+* **Yes**, because an integer vector cannot represent a continuous variable.
+* **No**, because the values are numeric.
+* **Yes**, because there are only three unique values.
+* **No**, because factors can only be created from character vectors.
+* It doesn't matter, because a factor and a three-level numeric vectors will behave identically.
 
 Solution
 ========
-The key question isn't "is the data numeric?" It's "does this variable represent a quantity, or a category?" Here,
-`1`, `2`, and `3` are just labels for treatment groups; there's no meaningful sense in which "group 2" is twice
-"group 1." Representing this column as a factor tells R (and anyone reading your code) that these are categories to
-be compared, not values to be averaged or added, which matters a great deal once this variable gets used in a
-statistical model or a plot.
+
+In this case, we don't care if the data are numeric, or how many unique values the data contain. We need to ask
+ourselves if this variable represent a quantity or a category? Here, `1`, `2`, and `3` are just arbitrary labels for
+treatment groups, not numeric representations of "the amount of treatment". So, *Treatment 2* doesn't need to be twice
+as much as *Treatment 2*. Representing this column as a factor tells R (and anyone reading your code) that these are
+categories to be compared, not quantitative values to be used for numeric calculations.
 
 Meta-information
 ================
+
 exname: Factor Use Case Reasoning
 extype: schoice
-exsolution: 10000
-exshuffle: TRUE
+exsolution: 1000000
+exshuffle: 5

@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/vs_atomic_vectors.html</loc>
-    <lastmod>2026-08-28T11:49:22.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/use_case_reasoning.html</loc>
-    <lastmod>2026-08-28T11:49:22.628Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/factors/tutorials/factors/creating.html</loc>
-    <lastmod>2026-09-23T10:27:29.482Z</lastmod>
+    <loc>https://www.openstatprog.com/factors/tutorials/factors/use_cases.html</loc>
+    <lastmod>2026-09-25T12:50:59.765Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/factors/tutorials/factors/index.html</loc>
     <lastmod>2026-09-21T15:03:58.331Z</lastmod>
   </url>
   <url>
+    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/vs_atomic_vectors.html</loc>
+    <lastmod>2026-09-25T13:51:20.787Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/factor_levels.html</loc>
+    <lastmod>2026-09-25T13:14:33.216Z</lastmod>
+  </url>
+  <url>
     <loc>https://www.openstatprog.com/factors/in_progress.html</loc>
     <lastmod>2026-08-28T11:49:22.621Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.openstatprog.com/factors/conclusion.html</loc>
+    <lastmod>2026-09-25T14:01:15.173Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/factors/index.html</loc>
     <lastmod>2026-09-15T11:25:53.803Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/factors/conclusion.html</loc>
-    <lastmod>2026-08-28T11:49:22.425Z</lastmod>
+    <loc>https://www.openstatprog.com/factors/quizzes/factors/index.html</loc>
+    <lastmod>2026-09-25T13:10:39.952Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/factors/tutorials/factors/use_cases.html</loc>
-    <lastmod>2026-09-25T12:50:59.765Z</lastmod>
+    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/use_case_reasoning.html</loc>
+    <lastmod>2026-09-25T13:32:24.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.openstatprog.com/factors/tutorials/factors/creating.html</loc>
+    <lastmod>2026-09-23T10:27:29.482Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/factors/tutorials/factors/uniqueness.html</loc>
     <lastmod>2026-09-23T11:21:57.597Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/factors/quizzes/factors/index.html</loc>
-    <lastmod>2026-08-28T11:49:22.626Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/factors/quizzes/factors/questions/factor_levels.html</loc>
-    <lastmod>2026-08-28T11:49:22.627Z</lastmod>
   </url>
 </urlset>
