@@ -2,6 +2,20 @@
 title: "Knowledge Quiz: Factors"
 ---
 
+```{r factors_quiz}
+#| echo: FALSE
+#| results: "asis"
+
+exams2forms::exams2forms(
+  file = list(
+    "factor_levels.Rmd",
+    "arithmetic.Rmd",
+    "use_case_reasoning.Rmd"
+  ),
+  edir = here::here("quizzes", "factors", "questions")
+)
+```
+
 ::: {.column-margin}
 
 :::: {.callout-note}
@@ -11,16 +25,3 @@ title: "Knowledge Quiz: Factors"
 
 :::
 
-```{r factors_quiz}
-#| echo: FALSE
-#| results: "asis"
-
-exams2forms::exams2forms(
-  file = list(
-    "factor_levels.Rmd",
-    "vs_atomic_vectors.Rmd",
-    "use_case_reasoning.Rmd"
-  ),
-  edir = here::here("quizzes", "factors", "questions")
-)
-```

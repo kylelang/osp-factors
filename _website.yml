@@ -1,6 +1,5 @@
 website:
-
-  title: "OSP Factors"
+  title: "Factors"
 
   site-url: "https://www.openstatprog.com/factors/"
 
@@ -31,21 +30,21 @@ website:
       - href: index.qmd
         text: "Overview"
       - section: tutorials/factors/index.qmd
-        text: "Factors"
+        text: "Tutorial"
         contents:
-        - href: tutorials/factors/creating.qmd
-        - href: tutorials/factors/uniqueness.qmd
-        - href: tutorials/factors/use_cases.qmd
-        - href: quizzes/factors/index.qmd
-          text: "Knowledge Quiz"
+          - href: tutorials/factors/creating.qmd
+          - href: tutorials/factors/uniqueness.qmd
+          - href: tutorials/factors/use_cases.qmd
+      - href: quizzes/factors/index.qmd
+        text: "Knowledge Quiz"
       - href: conclusion.qmd
 
   page-footer:
     background: primary
     foreground: dark
     left: |
-      [![](/assets/images/UU_logo_2021_EN_BLACK.png){fig-alt="UU" width=200px}](https://uu.nl) 
-    right: 
+      [![](/assets/images/UU_logo_2021_EN_BLACK.png){fig-alt="UU" width=200px}](https://uu.nl)
+    right:
       - text: "&copy; 2026"
       - href: "https://github.com/open-stat-prog"
         text: Open-Stat-Prog

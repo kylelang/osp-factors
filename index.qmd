@@ -10,31 +10,28 @@ format:
 source(here::here("R", "buttons.R"))
 ```
 
-::: {.callout-tip}
+::: {.column-margin}
 
-## ⏱ Estimated Time to Complete
+:::: completion-time
 
-**About 60–75 minutes**, including practice exercises and the knowledge quiz.
+**About 60–75 minutes**, including practice exercises and knowledge quiz.
+
+::::
 
 :::
 
-In this module, we'll cover R's tool for representing categorical data: **factors**. It builds directly on the vector, matrix, list, and data frame concepts you've already learned in previous modules.
-
-Content is split into three short tutorials:
-
-1. [Factors](/tutorials/factors/index.qmd)
-1. [Creating Factors](/tutorials/factors/creating.qmd)
-1. [Special Role of Factors](/tutorials/factors/uniqueness.qmd)
-1. [When to Use a Factor](/tutorials/factors/use_cases.qmd)
+Welcome to the **R Factors** module. In this module, we'll cover a particulalry useful class of data objects:
+**factors**. R uses factors to represent categorical data, so factors come up quite frequently in real-world data
+analysis (i.e., anytime your analysis involves a discrete grouping variable).
 
 ## Learning Goals
 
 After completing this module, you will be able to:
 
-1. Describe the characteristics of an R factor. 
-1. Explain how factors differ from atomic vectors. 
-1. Generate new factors in R. 
-1. Access and modify factor levels. 
+1. Describe the characteristics of an R factor.
+1. Explain how factors differ from atomic vectors.
+1. Generate new factors in R.
+1. Access and modify factor levels.
 1. Describe important use-cases for factors, and explain why factors are the best choice in these situations.
 
 Click the button below to get started.

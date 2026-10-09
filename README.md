@@ -1,3 +1,3 @@
-# Data Types
+# R Factors
 
-This repository holds the materials for the OSP Data Types module.
+This repository holds the materials for the OSP R Factors module.

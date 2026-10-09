@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>When to Use a Factor – OSP Factors</title>
+<title>When to Use Factors – Factors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -32,16 +66,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../">
 <link href="../../quizzes/factors/index.html" rel="next">
 <link href="../../tutorials/factors/uniqueness.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b552c22ab61df7af034dbe18709175fd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -72,27 +105,79 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
+div.callout-knowledge-check.callout {
+  border-left-color: #368FFF;
+}
+div.callout-knowledge-check.callout-style-default > .callout-header {
+  background-color: rgba(54, 143, 255, 0.13);
+}
+div.callout-knowledge-check .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-knowledge-check.callout-style-default .callout-icon::before, div.callout-knowledge-check.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f044' !important;
+  background-image: none;
+}
+div.callout-going-further.callout {
+  border-left-color: #B58900;
+}
+div.callout-going-further.callout-style-default > .callout-header {
+  background-color: rgba(181, 137, 0, 0.13);
+}
+div.callout-going-further .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-going-further.callout-style-default .callout-icon::before, div.callout-going-further.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f4d7' !important;
+  background-image: none;
+}
+div.callout-explanation.callout {
+  border-left-color: violet;
+}
+div.callout-explanation.callout-style-default > .callout-header {
+  background-color: rgb(from violet r g b / 13%);
+}
+div.callout-explanation .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-explanation.callout-style-default .callout-icon::before, div.callout-explanation.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f075' !important;
+  background-image: none;
+}
+div.callout-reading.callout {
+  border-left-color: violet;
+}
+div.callout-reading.callout-style-default > .callout-header {
+  background-color: rgb(from violet r g b / 13%);
+}
+div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
+  background-image: none;
+}
+div.callout-completion-time.callout {
+  border-left-color: gray;
+}
+div.callout-completion-time.callout-style-default > .callout-header {
+  background-color: rgb(from gray r g b / 13%);
+}
+div.callout-completion-time .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-completion-time.callout-style-default .callout-icon::before, div.callout-completion-time.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f2f2' !important;
+  background-image: none;
+}
 div.callout-reading-advanced.callout {
   border-left-color: red;
 }
 div.callout-reading-advanced.callout-style-default > .callout-header {
   background-color: rgb(from red r g b / 13%);
 }
-div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
 div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
-div.callout-reading.callout {
-  border-left-color: purple;
-}
-div.callout-reading.callout-style-default > .callout-header {
-  background-color: rgb(from purple r g b / 13%);
-}
-div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f518' !important;
@@ -104,11 +189,24 @@ div.callout-resource.callout {
 div.callout-resource.callout-style-default > .callout-header {
   background-color: rgb(from orange r g b / 13%);
 }
-div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
 div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f0c1' !important;
+  background-image: none;
+}
+div.callout-common-mistakes.callout {
+  border-left-color: #B01919;
+}
+div.callout-common-mistakes.callout-style-default > .callout-header {
+  background-color: rgba(176, 25, 25, 0.13);
+}
+div.callout-common-mistakes .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-common-mistakes.callout-style-default .callout-icon::before, div.callout-common-mistakes.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f188' !important;
   background-image: none;
 }
 div.callout-practice.callout {
@@ -117,7 +215,7 @@ div.callout-practice.callout {
 div.callout-practice.callout-style-default > .callout-header {
   background-color: rgb(from green r g b / 13%);
 }
-div.callout-practice .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-practice .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
 div.callout-practice.callout-style-default .callout-icon::before, div.callout-practice.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
@@ -126,11 +224,40 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../html/webex.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -176,7 +303,7 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/factors/index.html">Factors</a></li><li class="breadcrumb-item"><a href="../../tutorials/factors/use_cases.html">When to Use a Factor</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/factors/index.html">Tutorial</a></li><li class="breadcrumb-item"><a href="../../tutorials/factors/use_cases.html">When to Use Factors</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -197,7 +324,7 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../tutorials/factors/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Factors</span></a>
+ <span class="menu-text">Tutorial</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,17 +345,17 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/factors/use_cases.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">When to Use a Factor</span></a>
+ <span class="menu-text">When to Use Factors</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../quizzes/factors/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Knowledge Quiz</span></a>
   </div>
 </li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
@@ -245,19 +372,32 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#good-candidates-for-factors" id="toc-good-candidates-for-factors" class="nav-link active" data-scroll-target="#good-candidates-for-factors">Good Candidates for Factors</a></li>
-  <li><a href="#poor-candidates-for-factors" id="toc-poor-candidates-for-factors" class="nav-link" data-scroll-target="#poor-candidates-for-factors">Poor Candidates for Factors</a></li>
-  <li><a href="#why-this-distinction-matters" id="toc-why-this-distinction-matters" class="nav-link" data-scroll-target="#why-this-distinction-matters">Why This Distinction Matters</a></li>
-  <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick Check</a></li>
+  <li><a href="#good-candidates-for-factors" id="toc-good-candidates-for-factors" class="nav-link active" data-scroll-target="#good-candidates-for-factors">Good Candidates for Factors</a>
+  <ul class="collapse">
+  <li><a href="#what-about-ordered-categories" id="toc-what-about-ordered-categories" class="nav-link" data-scroll-target="#what-about-ordered-categories">What about Ordered Categories?</a></li>
+  </ul></li>
+  <li><a href="#poor-candidates-for-factors" id="toc-poor-candidates-for-factors" class="nav-link" data-scroll-target="#poor-candidates-for-factors">Poor Candidates for Factors</a>
+  <ul class="collapse">
+  <li><a href="#low-resolution-measurements" id="toc-low-resolution-measurements" class="nav-link" data-scroll-target="#low-resolution-measurements">Low Resolution Measurements</a></li>
+  <li><a href="#unit-identifiers" id="toc-unit-identifiers" class="nav-link" data-scroll-target="#unit-identifiers">Unit Identifiers</a></li>
+  <li><a href="#descriptive-strings" id="toc-descriptive-strings" class="nav-link" data-scroll-target="#descriptive-strings">Descriptive Strings</a></li>
+  </ul></li>
+  <li><a href="#gray-areas" id="toc-gray-areas" class="nav-link" data-scroll-target="#gray-areas">Gray Areas</a>
+  <ul class="collapse">
+  <li><a href="#manually-coarsened-variables" id="toc-manually-coarsened-variables" class="nav-link" data-scroll-target="#manually-coarsened-variables">Manually Coarsened Variables</a></li>
+  <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts">Counts</a></li>
+  <li><a href="#ordinal-variables" id="toc-ordinal-variables" class="nav-link" data-scroll-target="#ordinal-variables">Ordinal Variables</a></li>
+  </ul></li>
+  <li><a href="#much-ado-about-nothing" id="toc-much-ado-about-nothing" class="nav-link" data-scroll-target="#much-ado-about-nothing">Much Ado about Nothing?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/factors/index.html">Factors</a></li><li class="breadcrumb-item"><a href="../../tutorials/factors/use_cases.html">When to Use a Factor</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/factors/index.html">Tutorial</a></li><li class="breadcrumb-item"><a href="../../tutorials/factors/use_cases.html">When to Use Factors</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">When to Use a Factor</h1>
+<h1 class="title">When to Use Factors</h1>
 </div>
 
 
@@ -274,37 +414,182 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>You now know how to create factors and how they differ from atomic vectors. This page asks a different question. How do you decide when to use a factor in your own data analysis projects?</p>
+<div class="callout callout-style-default callout-going-further callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Going Further
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This page asks you to reason about <em>when</em> to reach for a factor, not how to build one.</p>
+<p>Fundamentally, the decision rule is very simple. <strong>Use factors to represent <em>nominal variables.</em></strong></p>
+<p>If you remember to use factors for any unordered categorical variables in your dataset, you’ll cover most practical use-cases. As with all design decisions, however, there are many nuances and special cases. This section explores this nuance and explains some of the most common caveats to the general rule of <em>nominal variable</em> <span class="math inline">\(\rightarrow\)</span> <em>R factor</em>.</p>
 </div>
 </div>
-<p>You now know how to create factors and how they differ from ordinary vectors internally. This page asks a different question: given some data, how do you decide whether it <em>should</em> be a factor in the first place?</p>
 <section id="good-candidates-for-factors" class="level2">
 <h2 class="anchored" data-anchor-id="good-candidates-for-factors">Good Candidates for Factors</h2>
-<p>A variable is usually a good candidate for a factor when it represents <strong>categories, not quantities</strong>, even if those categories happen to be written as numbers. A few examples:</p>
+<!--
+As noted above, R factors are meant to represent *nominal variables*. In other words, we use factors to represent
+unordered groups like the following.
+
+- Political party affiliation: `{Democrat, Republican}`
+- Nationality: `{Dutch, Canadian, Japanese, Kenyan, Chilean}`
+- Biological classification: `{Mammal, Bird, Fish, Insect}`
+- The 10 types of people: `{People who understand binary, Others}`
+-->
+<p>As noted above, R factors are meant to represent <em>nominal variables</em>. In other words, we use factors to represent unordered groups like the following.</p>
 <ul>
-<li><strong>Nominal categories with no inherent order</strong>, like <code>{"red", "blue", "green"}</code> or <code>{"male", "female",   "non-binary"}</code>.</li>
-<li><strong>Ordinal categories with a meaningful order</strong>, like <code>{"low", "medium", "high"}</code> or a Likert-scale response like <code>{"strongly disagree", ..., "strongly agree"}</code>. (R factors can represent ordered categories too, via the <code>ordered</code> argument to <code>factor()</code>, though we won’t go deep into that here.)</li>
-<li><strong>Numerically coded categories</strong>, like a survey where <code>1</code> means “yes” and <code>2</code> means “no.” Here the numbers are really just category <em>labels</em> in disguise. Doing arithmetic on them (like averaging <code>1.4</code>) wouldn’t mean anything.</li>
+<li>Political party affiliation
+<ul>
+<li><code>Democrat</code></li>
+<li><code>Republican</code></li>
+</ul></li>
+<li>Nationality
+<ul>
+<li><code>Dutch</code></li>
+<li><code>Canadian</code></li>
+<li><code>Japanese</code></li>
+<li><code>Kenyan</code></li>
+<li><code>Chilean</code></li>
+</ul></li>
+<li>Biological classification
+<ul>
+<li><code>Mammal</code></li>
+<li><code>Bird</code></li>
+<li><code>Fish</code></li>
+<li><code>Insect</code></li>
+</ul></li>
+<li>The 10 types of people
+<ul>
+<li><code>People who understand binary</code></li>
+<li><code>Others</code></li>
+</ul></li>
 </ul>
+<p>Factors are also appropriate representations of qualitative labels or answers to questions with fixed response sets.</p>
+<ul>
+<li>A student’s exam success:
+<ul>
+<li><code>Pass</code></li>
+<li><code>Fail</code></li>
+</ul></li>
+<li>A politician’s vote for a bill
+<ul>
+<li><code>Support</code></li>
+<li><code>Oppose</code></li>
+<li><code>Abstain</code></li>
+</ul></li>
+<li>The result of a single quiz question
+<ul>
+<li><code>Correct</code></li>
+<li><code>Incorrect</code></li>
+</ul></li>
+</ul>
+<section id="what-about-ordered-categories" class="level3">
+<h3 class="anchored" data-anchor-id="what-about-ordered-categories">What about Ordered Categories?</h3>
+<p>Basic R factors are not appropriate for <em>ordinal variables</em>. That is, qualitative variables with meaningful ordering like the following.</p>
+<ul>
+<li>Responses to questionnaire items given on a Likert-type scale
+<ol type="1">
+<li><code>Strongly Disagree</code></li>
+<li><code>Somewhat Disagree</code></li>
+<li><code>Somewhat Agree</code></li>
+<li><code>Strongly Agree</code></li>
+</ol></li>
+<li>Rankings (e.g., results of a race)
+<ol type="1">
+<li><code>First</code></li>
+<li><code>Second</code></li>
+<li><code>Third</code></li>
+</ol></li>
+</ul>
+<p>For this kind of ordinal data, we can use an <em>ordered factor</em>. To create an ordered factor, you simply specify <code>ordered = TRUE</code> in the <code>factor()</code> function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>medals <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"bronze"</span>, <span class="st">"silver"</span>, <span class="st">"gold"</span>), <span class="dv">10</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"bronze"</span>, <span class="st">"silver"</span>, <span class="st">"gold"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>medals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] gold   bronze gold   gold   gold   silver bronze silver silver bronze
+Levels: bronze &lt; silver &lt; gold</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(medals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$levels
+[1] "bronze" "silver" "gold"  
+
+$class
+[1] "ordered" "factor" </code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="poor-candidates-for-factors" class="level2">
 <h2 class="anchored" data-anchor-id="poor-candidates-for-factors">Poor Candidates for Factors</h2>
-<p>On the other hand, don’t reach for a factor just because a variable happens to take on a small number of distinct values. A few examples where a factor would be the <em>wrong</em> choice:</p>
+<p>Factors are great, but you must also be careful not to overgeneralize your use of factors. Of course, factors are never appropriate for numeric data that represent continuous quantities. However, a factor is not necessarily the right way to represent all variables that happen to take a small number of distinct values. The following examples illustrate common cases where a factor would be the <em>wrong</em> choice.</p>
+<section id="low-resolution-measurements" class="level3">
+<h3 class="anchored" data-anchor-id="low-resolution-measurements">Low Resolution Measurements</h3>
+<p>When deciding whether or not to use a factor, you need to consider the measurement level of the hypothetical construct you’re trying to represent, not how the values look in your data. For example, your data may contain the results of an IQ test scored on a 10-point scale. Although this item can only take 10 distinct values in your dataset, you probably wouldn’t want to represent IQ with a factor. Presumably, the 10-point IQ score is meant to quantify continuously varying intelligence level. So, you’re working with a low-resolution assessment of the underlying continuous variable, not a 10-level categorical variable.</p>
+</section>
+<section id="unit-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="unit-identifiers">Unit Identifiers</h3>
+<p>Most datasets contain identifier columns to uniquely label observational units (e.g., participant ID, school code, timestamp). These indicator variables certainly represent some sense of “grouping” but not usually the kinds of groups that you want to include as part of your substantive analysis. So, representing unit identifies as simple character vectors or integer vectors is usually more appropriate than using a factor.</p>
+</section>
+<section id="descriptive-strings" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive-strings">Descriptive Strings</h3>
+<p>In addition to various flavors of unit identifiers, most real-world datasets contain metadata fields like the participants’ IP addresses, software version tags, or administrative information about research sites. Likewise, many datasets contain at least some semi-structured textual data represented as character vectors (e.g., responses to open-ended questions, text scraped from websites). It almost never makes sense to directly convert these types of descriptive data into factors. There may be substantively interesting grouping information hiding in such columns, but you have to manually code the raw data into some form of systematic grouping variable before you’re ready to create any factors.</p>
+</section>
+</section>
+<section id="gray-areas" class="level2">
+<h2 class="anchored" data-anchor-id="gray-areas">Gray Areas</h2>
+<p>The choice of whether or not to use a factor is not always an obvious, black-and-white decision. Many cases, such as the following examples, fall into situationally dependent gray areas. In these kinds of situations, the focus of our analysis typically tells us whether we should use a factor or not.</p>
+<section id="manually-coarsened-variables" class="level3">
+<h3 class="anchored" data-anchor-id="manually-coarsened-variables">Manually Coarsened Variables</h3>
+<p>Sometimes, numeric data can be “coarsened” to create qualitative groups. We’ve already used several such cases in the examples above. Typically, to “pass” an exam, the examinee’s score must exceed some threshold. In Dutch universities, that threshold would usually be a score of 5.5 on a 1-to-10 scale. So, the binary Pass/Fail factor noted above would typically be created by binning a continuous, numeric score.</p>
+<p><span class="math display">\[
+\begin{align}
+  \mathit{Success} =
+    \begin{cases}
+      \mathit{Fail} &amp; \text{if} &amp; \mathit{Score} &lt; 5.5\\
+      \mathit{Pass} &amp; \text{if} &amp; \mathit{Score} \geq 5.5
+    \end{cases}
+\end{align}
+\]</span></p>
+<p>This type of manual coarsening is often used in biomedical contexts to simplify interpretation. Anytime medical guidance is presented in terms of a small set of disjoint groups, there’s a good chance that the groups were defined by categorizing an underlying continuous variable. BMI categories are one commonly encountered example. Technically, BMI can take any positive value, but many public health organizations provide guidelines for “healthy” and “unhealthy” BMIs based on discrete ranges. For example, the World Health Organization defines six levels of <em>Nutritional Status</em> based on the following BMI ranges.</p>
+<p><span class="math display">\[
+\begin{align}
+  \mathit{Nutritional~Status} =
+    \begin{cases}
+      \mathit{Underweight}       &amp; \text{if} &amp;                     &amp;      &amp; \hspace{-14mu} \mathit{BMI} &lt; 18.5\\
+      \mathit{Healthy~Weight}    &amp; \text{if} &amp; 18.5 \hspace{-18mu} &amp; \geq &amp; \hspace{-14mu} \mathit{BMI} &lt; 25\\
+      \mathit{Overweight}        &amp; \text{if} &amp; 25                  &amp; \geq &amp; \hspace{-14mu} \mathit{BMI} &lt; 30\\
+      \mathit{Obesity~Class~I}   &amp; \text{if} &amp; 30                  &amp; \geq &amp; \hspace{-14mu} \mathit{BMI} &lt; 35\\
+      \mathit{Obesity~Class~II}  &amp; \text{if} &amp; 35                  &amp; \geq &amp; \hspace{-14mu} \mathit{BMI} &lt; 40\\
+      \mathit{Obesity~Class~III} &amp; \text{if} &amp; 40                  &amp; \geq &amp; \hspace{-14mu} \mathit{BMI}
+    \end{cases}
+\end{align}
+\]</span></p>
+<p>From the perspective of optimal statistical measurement, coarsening continuous variables in this way is often a bad idea, but that discussion falls well outside the scope of this tutorial. For our purposes, you should simply realize that you may encounter situations where the same underlying data can be represented as a numeric variable or a factor, depending on how you process those data.</p>
+</section>
+<section id="counts" class="level3">
+<h3 class="anchored" data-anchor-id="counts">Counts</h3>
+<p>A <em>count</em> variable records the number of discrete elements in a set—like the number of children in a family or the number of hurricanes in a year. Technically, counts are categorical variables because you can only count whole numbers of things (e.g., a family cannot include 2.75 children). However, we often want to analyze counts as numeric values. For example, it seems sensible to ask if the average number of children in Dutch families is different from the average number of children in Spanish families. In such cases, it would not be appropriate to convert the numeric count variable to a factor.</p>
+<p>We don’t always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a count as an ordered factor. For example, a questionnaire item may ask participants to report how many cigarettes they smoke each day. As posed, this question elicits count responses, but the data are often binned into discrete ordinal categories like <em>none</em>, <em>a few per week</em>, <em>several per day</em>, etc. Self-reported consumption rates are notoriously poor, so analyzing these questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution ordered factors.</p>
+</section>
+<section id="ordinal-variables" class="level3">
+<h3 class="anchored" data-anchor-id="ordinal-variables">Ordinal Variables</h3>
+<p>Finally, let’s consider a problem that’s somewhat complementary to the situation with counts. Ordinal variables are unambiguously categorical, and ordered factors are absolutely the correct way to represent an ordinal variable in R. So, it may surprise you to hear that ordered factors are not used very frequently in real-world analyses. Again, the main consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset. Surveys and questionnaires often include various self-reported rating scales like the following examples.</p>
 <ul>
-<li><strong>A count</strong>, like “number of children”, even if most values fall between 0 and 4, this is a genuine quantity you might want to average or add.</li>
-<li><strong>A continuous measurement that happens to be rounded</strong>, like a test score out of 100, you’d still want to do arithmetic on this.</li>
-<li><strong>An identifier</strong>, like a participant ID number, while these aren’t meaningfully “categories” in the usual sense, they also aren’t something you’d typically model or plot as groups, so a plain character or integer vector is usually more appropriate.</li>
+<li><a href="https://hexaco.org/hexaco-inventory">HEXACO Personality Inventory</a></li>
+<li><a href="https://doi.org/10.1111/j.1469-7610.1997.tb01545.x">Strengths and Difficulties Questionnaire</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12752920/">Climate Change Anxiety Scale</a></li>
 </ul>
+<p>These scales produce ordinal data, but the items are not meant to be analyzed independently. Rather, we’re supposed to aggregate the individual items into so-called <em>scale scores</em> (e.g., by averaging the responses). In such cases, we clearly cannot represent the individual items as ordered factors, since we cannot compute the mean of a set of ordered factors.</p>
+<p>In situations where our analysis will maintain the ordinal nature of a given variable, however, it would be appropriate to represent that variable as an ordered factor. For example, we may wish to evaluate risk factors for obesity in adults. We could use a proportional odds logistic regression model wherein the <em>Nutritional Status</em> variable described above acts as the outcome variable, and variables quantifying risk factors act as predictors. In this analysis, we should format <em>Nutritional Status</em> as an ordered factor.</p>
 <div class="callout callout-style-default callout-practice callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -315,9 +600,9 @@ Practice
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For each of the following variables, decide whether a factor would be an appropriate choice. Be ready to explain your reasoning.</p>
+<p>Consider the following four hypothetical variables.</p>
 <ol type="1">
-<li>A column recording each survey respondent’s marital status: <code>{"single", "married", "divorced", "widowed"}</code>.</li>
+<li>A column recording each survey respondent’s marital status: <code>{single, married, divorced, widowed}</code>.</li>
 <li>A column recording each respondent’s exact age in years.</li>
 <li>A column recording which of 3 experimental treatment groups each participant was assigned to.</li>
 <li>A column recording each respondent’s annual income in dollars.</li>
@@ -326,7 +611,7 @@ Practice
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><i class="fa-solid fa-circle-question" aria-label="circle-question"></i> Question</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> Solution</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Think through each variable before checking the solution.</p>
+<p>Explain why (or why not) a factor would be an appropriate way to represent each variable.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ol type="1">
@@ -341,15 +626,30 @@ Practice
 </div>
 </div>
 </section>
-<section id="why-this-distinction-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-distinction-matters">Why This Distinction Matters</h2>
-<p>Getting this right isn’t just a matter of style. If you accidentally leave a categorical variable as plain numbers, statistical modeling functions may treat it as a continuous predictor (implying, incorrectly, that “group 2” is somehow “twice as much” as “group 1”). If you accidentally convert a genuine quantity into a factor, you’ll lose the ability to do arithmetic on it, and many modeling and plotting functions will treat it as a set of unordered categories instead of a meaningful numeric scale. Choosing the right representation up front saves you from subtle, hard-to-diagnose errors later in an analysis.</p>
 </section>
-<section id="quick-check" class="level2">
-<h2 class="anchored" data-anchor-id="quick-check">Quick Check</h2>
+<section id="much-ado-about-nothing" class="level2">
+<h2 class="anchored" data-anchor-id="much-ado-about-nothing">Much Ado about Nothing?</h2>
+<p>You may be wondering why we’re making such a fuss about when to use factors. Well, in practice, getting this decision right isn’t just a trivial matter of style. As you’ve seen on previous pages, if you try to analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying, incorrectly, that <em>Group 2</em> is somehow “twice as much” as <em>Group 1</em>). Accidentally converting a continuous, numeric variable into a factor creates even more obvious problems, since R won’t do any numeric calculations with that variable anymore. Furthermore, the gray area situations discussed above pose tricky, situationally dependent questions that you must answer within the context of a given project. Here, you’re not concerned about completely breaking your analysis. Rather, the choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of your results.</p>
+<p>Beyond these technical and pragmatic considerations, there’s also a deeper level of implications to consider. Statistical measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our analysis can make very strong political, philosophical, or ethical statements.</p>
+<p>For example, binary gender was, traditionally, the go-to example of a nominal variable used in statistics education. However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally created construct. If you want to include a “gender” variable in your analysis, what operationalization will you use? If you don’t want to endorse the concept of binary gender, you could create a three-level factor by adding a “non-binary” option, but you could also fully embrace a fluid conceptualization of gender by representing gender as a continuous numeric variable. Each of these options makes an implicit statement about the definition of “gender”, and you’re implicitly endorsing that statement by choosing a particular operationalization.</p>
+<p>Lest any sociologists or political scientists reading this start getting too smug, realize that you don’t need to analyze person-level data to encounter fraught design decisions. Suppose you need to create a “nationality” indicator for a sample of East Asian participants. Do you classify participants from Taiwan as Chinese? What if you need to create a “country” indicator for a sample from Western Asia. Do you represent Palestine as an independent country? At time of writing, both of these questions are highly contentious political issues, so you cannot naïvely defer to the consensus of the international community. You must choose, and your choice will have consequences.</p>
+<div class="callout callout-style-default callout-knowledge-check callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Knowledge Check
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Would you use a factor for a column recording customers’ star ratings (1–5) on a product review site? What about a column recording the <em>number</em> of reviews each product received? Explain the difference.</li>
+<li>For what types of variables are factors most appropriate?</li>
+<li>What are some examples of variables that you should not represent as factors?</li>
+<li>Why is it not always obvious when you should use a factor?</li>
 </ul>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -362,12 +662,12 @@ Ready to Continue?
 <div class="callout-body-container callout-body">
 <p>You’ve now completed the <em>Factors</em> module. You’re ready to move on if you can:</p>
 <ul>
-<li>Explain what makes a factor different from an ordinary numeric or character vector.</li>
-<li>Generate a factor using <code>factor()</code>, and access or modify its levels.</li>
+<li>Explain what makes a factor different from an ordinary atomic vector.</li>
+<li>Generate a factor using <code>factor()</code> and access or modify its levels.</li>
 <li>Explain why mathematical operations on a factor return <code>NA</code> instead of a number.</li>
 <li>Decide, given a description of a variable, whether it should be represented as a factor.</li>
 </ul>
-<p>If any of these still feel shaky, revisit the relevant page above, or try the <a href="../../quizzes/factors/index.html">Knowledge Quiz</a> to pinpoint exactly where to focus. Once you’re ready, head to the <a href="../../conclusion.html">Conclusion</a> page to find this module’s hand-in assignment.</p>
+<p>Take the <a href="../../quizzes/factors/index.html">Knowledge Quiz</a> to assess your learning.</p>
 </div>
 </div>
 
@@ -376,249 +676,246 @@ Ready to Continue?
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
-        }
-        return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.openstatprog\.com\/factors\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.openstatprog\.com\/factors\/");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-            // target, if specified
-            link.setAttribute("target", "_blank");
-            if (link.getAttribute("rel") === null) {
-              link.setAttribute("rel", "noopener");
-            }
-            // default icon
-            link.classList.add("external");
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -626,161 +923,185 @@ Ready to Continue?
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../tutorials/factors/uniqueness.html" class="pagination-link" aria-label="Special Role of Factors">

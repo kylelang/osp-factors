@@ -1,54 +1,62 @@
 [
   {
-    "objectID": "quizzes/factors/questions/vs_atomic_vectors.html",
-    "href": "quizzes/factors/questions/vs_atomic_vectors.html",
-    "title": "Question",
+    "objectID": "tutorials/factors/use_cases.html",
+    "href": "tutorials/factors/use_cases.html",
+    "title": "When to Use Factors",
     "section": "",
-    "text": "f &lt;- factor(c(\"1\", \"2\", \"3\")) creates a factor whose levels look like numbers. Which of the following correctly predicts and explains what f + 1 returns?\n\n\n\nIt returns NA for every element, because factors aren’t numeric. Arithmetic on a factor doesn’t have a meaningful definition, regardless of what the level names look like.\nIt returns c(2, 3, 4), because R converts the level names to numbers before adding.\nIt returns an error that stops execution, because R refuses to evaluate the expression at all.\nIt returns c(\"1\", \"2\", \"3\", 1), appending the 1 to the factor’s levels.\nIt returns f unchanged, since adding 1 to a factor has no effect."
-  },
-  {
-    "objectID": "quizzes/factors/questions/vs_atomic_vectors.html#answerlist",
-    "href": "quizzes/factors/questions/vs_atomic_vectors.html#answerlist",
-    "title": "Question",
-    "section": "",
-    "text": "It returns NA for every element, because factors aren’t numeric. Arithmetic on a factor doesn’t have a meaningful definition, regardless of what the level names look like.\nIt returns c(2, 3, 4), because R converts the level names to numbers before adding.\nIt returns an error that stops execution, because R refuses to evaluate the expression at all.\nIt returns c(\"1\", \"2\", \"3\", 1), appending the 1 to the factor’s levels.\nIt returns f unchanged, since adding 1 to a factor has no effect."
-  },
-  {
-    "objectID": "quizzes/factors/questions/use_case_reasoning.html",
-    "href": "quizzes/factors/questions/use_case_reasoning.html",
-    "title": "Question",
-    "section": "",
-    "text": "You’re preparing a dataset with a column called group, where each value is either 1, 2, or 3, representing which of three experimental treatment conditions each participant received (the numbers are arbitrary labels, not measurements). Should this column be a factor?\n\n\n\nYes — the values represent unordered categories, even though they’re written as numbers, which is exactly the situation a factor is designed for.\nNo — since the values are numeric, they should always be left as a plain numeric vector.\nYes — but only because there happen to be exactly three groups.\nNo — factors can only be created from character data, never from numbers.\nIt doesn’t matter, since factors and numeric vectors behave identically in statistical models."
-  },
-  {
-    "objectID": "quizzes/factors/questions/use_case_reasoning.html#answerlist",
-    "href": "quizzes/factors/questions/use_case_reasoning.html#answerlist",
-    "title": "Question",
-    "section": "",
-    "text": "Yes — the values represent unordered categories, even though they’re written as numbers, which is exactly the situation a factor is designed for.\nNo — since the values are numeric, they should always be left as a plain numeric vector.\nYes — but only because there happen to be exactly three groups.\nNo — factors can only be created from character data, never from numbers.\nIt doesn’t matter, since factors and numeric vectors behave identically in statistical models."
-  },
-  {
-    "objectID": "tutorials/factors/creating.html",
-    "href": "tutorials/factors/creating.html",
-    "title": "Creating Factors",
-    "section": "",
-    "text": "Note\n\n\n\nThis page is hands-on: generating factors and working with their levels.\nWe create factors using the factor() function. This function takes a vector of values (typically numeric or character) where each unique value represents a group and converts this input vector into a factor.\n(x &lt;- sample(1:3, 20, TRUE))\n\n [1] 2 2 3 1 2 2 1 1 3 1 1 3 1 1 2 1 1 3 2 1\n\n(f1 &lt;- factor(x))\n\n [1] 2 2 3 1 2 2 1 1 3 1 1 3 1 1 2 1 1 3 2 1\nLevels: 1 2 3\n\n(y &lt;- rep(c(\"foo\", \"bar\"), 10))\n\n [1] \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\"\n[13] \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\"\n\n(f2 &lt;- factor(y))\n\n [1] foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo\n[20] bar\nLevels: bar foo\nIt may not seem like the factor() function did much in the examples above, but that’s far from true. Regardless of what type of input data we use to create a factor, the factor() function will always induce three consistent features in the resulting factor object.\n# Factors have their own class\nclass(x)\n\n[1] \"integer\"\n\nclass(f1)\n\n[1] \"factor\"\n\nclass(y)\n\n[1] \"character\"\n\nclass(f2)\n\n[1] \"factor\"\n\n# Factors have a levels attribute\nattributes(x)\n\nNULL\n\nattributes(f1)\n\n$levels\n[1] \"1\" \"2\" \"3\"\n\n$class\n[1] \"factor\"\n\nattributes(y)\n\nNULL\n\nattributes(f2)\n\n$levels\n[1] \"bar\" \"foo\"\n\n$class\n[1] \"factor\"\n\n# Factors use integer vectors to map each observation to a group\ntypeof(x)\n\n[1] \"integer\"\n\ntypeof(f1)\n\n[1] \"integer\"\n\ntypeof(y)\n\n[1] \"character\"\n\ntypeof(f2)\n\n[1] \"integer\"",
+    "text": "You now know how to create factors and how they differ from atomic vectors. This page asks a different question. How do you decide when to use a factor in your own data analysis projects?",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors",
-      "Creating Factors"
+      "Tutorial",
+      "When to Use Factors"
     ]
   },
   {
-    "objectID": "tutorials/factors/creating.html#quick-check",
-    "href": "tutorials/factors/creating.html#quick-check",
-    "title": "Creating Factors",
-    "section": "Quick Check",
-    "text": "Quick Check\n\nWhat three things does factor() always add to its input, regardless of what type the input was?\nWhat’s stored under the hood: the category names, or numbers that map to those names?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "objectID": "tutorials/factors/use_cases.html#good-candidates-for-factors",
+    "href": "tutorials/factors/use_cases.html#good-candidates-for-factors",
+    "title": "When to Use Factors",
+    "section": "Good Candidates for Factors",
+    "text": "Good Candidates for Factors\n\nAs noted above, R factors are meant to represent nominal variables. In other words, we use factors to represent unordered groups like the following.\n\nPolitical party affiliation\n\nDemocrat\nRepublican\n\nNationality\n\nDutch\nCanadian\nJapanese\nKenyan\nChilean\n\nBiological classification\n\nMammal\nBird\nFish\nInsect\n\nThe 10 types of people\n\nPeople who understand binary\nOthers\n\n\nFactors are also appropriate representations of qualitative labels or answers to questions with fixed response sets.\n\nA student’s exam success:\n\nPass\nFail\n\nA politician’s vote for a bill\n\nSupport\nOppose\nAbstain\n\nThe result of a single quiz question\n\nCorrect\nIncorrect\n\n\n\nWhat about Ordered Categories?\nBasic R factors are not appropriate for ordinal variables. That is, qualitative variables with meaningful ordering like the following.\n\nResponses to questionnaire items given on a Likert-type scale\n\nStrongly Disagree\nSomewhat Disagree\nSomewhat Agree\nStrongly Agree\n\nRankings (e.g., results of a race)\n\nFirst\nSecond\nThird\n\n\nFor this kind of ordinal data, we can use an ordered factor. To create an ordered factor, you simply specify ordered = TRUE in the factor() function.\n\nmedals &lt;- factor(\n    sample(c(\"bronze\", \"silver\", \"gold\"), 10, TRUE),\n    levels = c(\"bronze\", \"silver\", \"gold\"),\n    ordered = TRUE\n)\nmedals\n\n [1] gold   bronze gold   gold   gold   silver bronze silver silver bronze\nLevels: bronze &lt; silver &lt; gold\n\nattributes(medals)\n\n$levels\n[1] \"bronze\" \"silver\" \"gold\"  \n\n$class\n[1] \"ordered\" \"factor\"",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors",
-      "Creating Factors"
+      "Tutorial",
+      "When to Use Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/use_cases.html#poor-candidates-for-factors",
+    "href": "tutorials/factors/use_cases.html#poor-candidates-for-factors",
+    "title": "When to Use Factors",
+    "section": "Poor Candidates for Factors",
+    "text": "Poor Candidates for Factors\nFactors are great, but you must also be careful not to overgeneralize your use of factors. Of course, factors are never appropriate for numeric data that represent continuous quantities. However, a factor is not necessarily the right way to represent all variables that happen to take a small number of distinct values. The following examples illustrate common cases where a factor would be the wrong choice.\n\nLow Resolution Measurements\nWhen deciding whether or not to use a factor, you need to consider the measurement level of the hypothetical construct you’re trying to represent, not how the values look in your data. For example, your data may contain the results of an IQ test scored on a 10-point scale. Although this item can only take 10 distinct values in your dataset, you probably wouldn’t want to represent IQ with a factor. Presumably, the 10-point IQ score is meant to quantify continuously varying intelligence level. So, you’re working with a low-resolution assessment of the underlying continuous variable, not a 10-level categorical variable.\n\n\nUnit Identifiers\nMost datasets contain identifier columns to uniquely label observational units (e.g., participant ID, school code, timestamp). These indicator variables certainly represent some sense of “grouping” but not usually the kinds of groups that you want to include as part of your substantive analysis. So, representing unit identifies as simple character vectors or integer vectors is usually more appropriate than using a factor.\n\n\nDescriptive Strings\nIn addition to various flavors of unit identifiers, most real-world datasets contain metadata fields like the participants’ IP addresses, software version tags, or administrative information about research sites. Likewise, many datasets contain at least some semi-structured textual data represented as character vectors (e.g., responses to open-ended questions, text scraped from websites). It almost never makes sense to directly convert these types of descriptive data into factors. There may be substantively interesting grouping information hiding in such columns, but you have to manually code the raw data into some form of systematic grouping variable before you’re ready to create any factors.",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "When to Use Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/use_cases.html#gray-areas",
+    "href": "tutorials/factors/use_cases.html#gray-areas",
+    "title": "When to Use Factors",
+    "section": "Gray Areas",
+    "text": "Gray Areas\nThe choice of whether or not to use a factor is not always an obvious, black-and-white decision. Many cases, such as the following examples, fall into situationally dependent gray areas. In these kinds of situations, the focus of our analysis typically tells us whether we should use a factor or not.\n\nManually Coarsened Variables\nSometimes, numeric data can be “coarsened” to create qualitative groups. We’ve already used several such cases in the examples above. Typically, to “pass” an exam, the examinee’s score must exceed some threshold. In Dutch universities, that threshold would usually be a score of 5.5 on a 1-to-10 scale. So, the binary Pass/Fail factor noted above would typically be created by binning a continuous, numeric score.\n\\[\n\\begin{align}\n  \\mathit{Success} =\n    \\begin{cases}\n      \\mathit{Fail} & \\text{if} & \\mathit{Score} &lt; 5.5\\\\\n      \\mathit{Pass} & \\text{if} & \\mathit{Score} \\geq 5.5\n    \\end{cases}\n\\end{align}\n\\]\nThis type of manual coarsening is often used in biomedical contexts to simplify interpretation. Anytime medical guidance is presented in terms of a small set of disjoint groups, there’s a good chance that the groups were defined by categorizing an underlying continuous variable. BMI categories are one commonly encountered example. Technically, BMI can take any positive value, but many public health organizations provide guidelines for “healthy” and “unhealthy” BMIs based on discrete ranges. For example, the World Health Organization defines six levels of Nutritional Status based on the following BMI ranges.\n\\[\n\\begin{align}\n  \\mathit{Nutritional~Status} =\n    \\begin{cases}\n      \\mathit{Underweight}       & \\text{if} &                     &      & \\hspace{-14mu} \\mathit{BMI} &lt; 18.5\\\\\n      \\mathit{Healthy~Weight}    & \\text{if} & 18.5 \\hspace{-18mu} & \\geq & \\hspace{-14mu} \\mathit{BMI} &lt; 25\\\\\n      \\mathit{Overweight}        & \\text{if} & 25                  & \\geq & \\hspace{-14mu} \\mathit{BMI} &lt; 30\\\\\n      \\mathit{Obesity~Class~I}   & \\text{if} & 30                  & \\geq & \\hspace{-14mu} \\mathit{BMI} &lt; 35\\\\\n      \\mathit{Obesity~Class~II}  & \\text{if} & 35                  & \\geq & \\hspace{-14mu} \\mathit{BMI} &lt; 40\\\\\n      \\mathit{Obesity~Class~III} & \\text{if} & 40                  & \\geq & \\hspace{-14mu} \\mathit{BMI}\n    \\end{cases}\n\\end{align}\n\\]\nFrom the perspective of optimal statistical measurement, coarsening continuous variables in this way is often a bad idea, but that discussion falls well outside the scope of this tutorial. For our purposes, you should simply realize that you may encounter situations where the same underlying data can be represented as a numeric variable or a factor, depending on how you process those data.\n\n\nCounts\nA count variable records the number of discrete elements in a set—like the number of children in a family or the number of hurricanes in a year. Technically, counts are categorical variables because you can only count whole numbers of things (e.g., a family cannot include 2.75 children). However, we often want to analyze counts as numeric values. For example, it seems sensible to ask if the average number of children in Dutch families is different from the average number of children in Spanish families. In such cases, it would not be appropriate to convert the numeric count variable to a factor.\nWe don’t always need to analyze counts as numeric quantities, though. Sometimes, it makes more sense to represent a count as an ordered factor. For example, a questionnaire item may ask participants to report how many cigarettes they smoke each day. As posed, this question elicits count responses, but the data are often binned into discrete ordinal categories like none, a few per week, several per day, etc. Self-reported consumption rates are notoriously poor, so analyzing these questionnaire responses as numeric counts may lead to spurious precision and misleading results. We may be better off accepting the inherent noise of our measurement and purposefully coarsening the counts into appropriately low-resolution ordered factors.\n\n\nOrdinal Variables\nFinally, let’s consider a problem that’s somewhat complementary to the situation with counts. Ordinal variables are unambiguously categorical, and ordered factors are absolutely the correct way to represent an ordinal variable in R. So, it may surprise you to hear that ordered factors are not used very frequently in real-world analyses. Again, the main consideration is how the variables will be analyzed, not how they can be most accurately represented in the dataset. Surveys and questionnaires often include various self-reported rating scales like the following examples.\n\nHEXACO Personality Inventory\nStrengths and Difficulties Questionnaire\nClimate Change Anxiety Scale\n\nThese scales produce ordinal data, but the items are not meant to be analyzed independently. Rather, we’re supposed to aggregate the individual items into so-called scale scores (e.g., by averaging the responses). In such cases, we clearly cannot represent the individual items as ordered factors, since we cannot compute the mean of a set of ordered factors.\nIn situations where our analysis will maintain the ordinal nature of a given variable, however, it would be appropriate to represent that variable as an ordered factor. For example, we may wish to evaluate risk factors for obesity in adults. We could use a proportional odds logistic regression model wherein the Nutritional Status variable described above acts as the outcome variable, and variables quantifying risk factors act as predictors. In this analysis, we should format Nutritional Status as an ordered factor.\n\n\n\n\n\n\nPractice\n\n\n\nConsider the following four hypothetical variables.\n\nA column recording each survey respondent’s marital status: {single, married, divorced, widowed}.\nA column recording each respondent’s exact age in years.\nA column recording which of 3 experimental treatment groups each participant was assigned to.\nA column recording each respondent’s annual income in dollars.\n\n\n Question Solution\n\n\nExplain why (or why not) a factor would be an appropriate way to represent each variable.\n\n\n\nFactor. Marital status is a small set of unordered categories, a textbook use-case for a factor.\nNot a factor. Age is a genuine quantity, you’d want to compute averages, compare magnitudes, and so on.\nFactor. Treatment group assignment is exactly the kind of categorical grouping factors were designed for, especially since this variable will likely be used in a statistical model later.\nNot a factor. Income is a continuous quantity, even though it might have a skewed distribution, you wouldn’t want R to prevent you from computing a mean or a sum.",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "When to Use Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/use_cases.html#much-ado-about-nothing",
+    "href": "tutorials/factors/use_cases.html#much-ado-about-nothing",
+    "title": "When to Use Factors",
+    "section": "Much Ado about Nothing?",
+    "text": "Much Ado about Nothing?\nYou may be wondering why we’re making such a fuss about when to use factors. Well, in practice, getting this decision right isn’t just a trivial matter of style. As you’ve seen on previous pages, if you try to analyze a nominal variable as a numeric vector, R will assume that variable represents some continuous value (implying, incorrectly, that Group 2 is somehow “twice as much” as Group 1). Accidentally converting a continuous, numeric variable into a factor creates even more obvious problems, since R won’t do any numeric calculations with that variable anymore. Furthermore, the gray area situations discussed above pose tricky, situationally dependent questions that you must answer within the context of a given project. Here, you’re not concerned about completely breaking your analysis. Rather, the choice of whether or not to use a factor directly affects the formulation of your research question and the meaning of your results.\nBeyond these technical and pragmatic considerations, there’s also a deeper level of implications to consider. Statistical measurement is not nearly as anodyne and objective as we may wish it to be, particularly if your analysis involves human subjects or sociopolitical entities. Something as simple as the way we choose to operationalize some variable in our analysis can make very strong political, philosophical, or ethical statements.\nFor example, binary gender was, traditionally, the go-to example of a nominal variable used in statistics education. However, in recent years, the conceptualization of gender has shifted toward understanding gender as a fluid, culturally created construct. If you want to include a “gender” variable in your analysis, what operationalization will you use? If you don’t want to endorse the concept of binary gender, you could create a three-level factor by adding a “non-binary” option, but you could also fully embrace a fluid conceptualization of gender by representing gender as a continuous numeric variable. Each of these options makes an implicit statement about the definition of “gender”, and you’re implicitly endorsing that statement by choosing a particular operationalization.\nLest any sociologists or political scientists reading this start getting too smug, realize that you don’t need to analyze person-level data to encounter fraught design decisions. Suppose you need to create a “nationality” indicator for a sample of East Asian participants. Do you classify participants from Taiwan as Chinese? What if you need to create a “country” indicator for a sample from Western Asia. Do you represent Palestine as an independent country? At time of writing, both of these questions are highly contentious political issues, so you cannot naïvely defer to the consensus of the international community. You must choose, and your choice will have consequences.\n\n\n\n\n\n\nKnowledge Check\n\n\n\n\nFor what types of variables are factors most appropriate?\nWhat are some examples of variables that you should not represent as factors?\nWhy is it not always obvious when you should use a factor?\n\n\n\n\n\n\n\n\n\nReady to Continue?\n\n\n\nYou’ve now completed the Factors module. You’re ready to move on if you can:\n\nExplain what makes a factor different from an ordinary atomic vector.\nGenerate a factor using factor() and access or modify its levels.\nExplain why mathematical operations on a factor return NA instead of a number.\nDecide, given a description of a variable, whether it should be represented as a factor.\n\nTake the Knowledge Quiz to assess your learning.",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "When to Use Factors"
     ]
   },
   {
@@ -56,10 +64,10 @@
     "href": "tutorials/factors/index.html",
     "title": "Factors",
     "section": "",
-    "text": "Learning Outcomes\n\n\n\nBy the end of this tutorial, you will be able to:\n\nDescribe the characteristics of an R factor.\nExplain how factors differ from atomic vectors.\nGenerate new factors in R.\nAccess and modify factor levels.\nDescribe important use-cases for factors, and explain why factors are the best choice in these situations.\nIn statistical data analysis, we often necessary to represent categorical variables: data that fall into of discrete groups or levels. Typical examples include nominal variables like {“male”, “female”}, {“yes”, “no”}, or political party affiliation. In R, we use factors to represent categorical variables in our data.\nAn R factor is a special kind of object that encodes a categorical variable’s grouping information through in a consistent way that R functions know how to handle. Factors are particularly important for modeling and plotting functions. When we use a categorical variable as part of a statistical model or visualization, the variable needs special treatment to be treated as groupings or levels, rather than as continuous quantities.",
+    "text": "In statistical data analysis, we often need to represent categorical variables: data that fall into of discrete groups or levels. Typical examples include nominal variables like {“male”, “female”}, {“yes”, “no”}, or political party affiliation. In R, we use factors to represent categorical variables in our data.\nAn R factor is a special kind of object that encodes a categorical variable’s grouping information in a consistent way that R functions know how to handle. When we use a categorical variable as part of a statistical model or visualization, R needs to apply special processing to make the variable correctly represent groups or levels. Factors trigger this special processing, so they are particularly important for modeling and plotting functions.",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors"
+      "Tutorial"
     ]
   },
   {
@@ -67,22 +75,39 @@
     "href": "tutorials/factors/index.html#where-factors-fit",
     "title": "Factors",
     "section": "Where Factors Fit",
-    "text": "Where Factors Fit\nIf you’ve completed the earlier modules in this series, you already have all the background you need for factors. Recall the hierarchy of data structures you’ve built up so far:\n\nSingle values\nVectors (one-dimensional, same type)\nMatrices (two-dimensional, same type)\nLists (one-dimensional, mixed types)\nData frames (two-dimensional, mixed types across columns)\n\nFactors don’t add a new dimension or a new mixing rule, they add meaning. A factor is built on top of an integer vector, but that integer vector represents categories, not quantities. This tutorial is about understanding that distinction and why it matters.",
+    "text": "Where Factors Fit\nIf you’ve completed the earlier modules in this series, you already have all the background information you need to understand factors. Recall the hierarchy of data structures you’ve built up so far:\n\nVectors (dimensionless, same data type)\nMatrices (two-dimensional, same data type)\nLists (dimensionless, mixed data types)\nData Frames (seemingly two-dimensional, mixed data types)\n\nFactors add to this hierarchy, but not by allowing more dimensions or more heterogeneous data. Rather, factors add meaning by incorporating additional metadata in the form of levels attribute that tells R how to interpret the grouping structure represented by the factor.\n\n\n\n\n\n\nKnowledge Check\n\n\n\nWhy might it be a problem if R treated a “yes”/“no” survey response the same way it treats an ordinary numeric measurement?",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors"
+      "Tutorial"
     ]
   },
   {
-    "objectID": "tutorials/factors/index.html#quick-check",
-    "href": "tutorials/factors/index.html#quick-check",
-    "title": "Factors",
-    "section": "Quick Check",
-    "text": "Quick Check\nBefore reading further: why might it be a problem if R treated a “yes”/“no” survey response the same way it treats an ordinary numeric measurement?",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors"
-    ]
+    "objectID": "quizzes/factors/questions/use_case_reasoning.html",
+    "href": "quizzes/factors/questions/use_case_reasoning.html",
+    "title": "Question",
+    "section": "",
+    "text": "You’re preparing a dataset that contains a column called group representing which of three experimental treatment conditions each participant received. Each entry in the group column is either 1, 2, or 3 (these numbers are arbitrary labels, not quantitative measurements). Should this column be a factor?\nChoose the answer with the most appropriate justification.\n\n\n\nYes, because the values represent unordered categories.\nYes, because the values are integers and not decimal valued numbers.\nYes, because an integer vector cannot represent a continuous variable.\nNo, because the values are numeric.\nYes, because there are only three unique values.\nNo, because factors can only be created from character vectors.\nIt doesn’t matter, because a factor and a three-level numeric vectors will behave identically."
+  },
+  {
+    "objectID": "quizzes/factors/questions/use_case_reasoning.html#answerlist",
+    "href": "quizzes/factors/questions/use_case_reasoning.html#answerlist",
+    "title": "Question",
+    "section": "",
+    "text": "Yes, because the values represent unordered categories.\nYes, because the values are integers and not decimal valued numbers.\nYes, because an integer vector cannot represent a continuous variable.\nNo, because the values are numeric.\nYes, because there are only three unique values.\nNo, because factors can only be created from character vectors.\nIt doesn’t matter, because a factor and a three-level numeric vectors will behave identically."
+  },
+  {
+    "objectID": "quizzes/factors/questions/arithmetic.html",
+    "href": "quizzes/factors/questions/arithmetic.html",
+    "title": "Question",
+    "section": "",
+    "text": "The command f &lt;- factor(30:32) creates a factor with levels \"30\", \"31\", \"32\". What will the expression f - 10 return?\nChoose the answer with the most appropriate justification.\n\n\n\nNA, NA, NA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.\nNA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.\nNA, NA, NA, because factor level names are character vectors, and arithmetic on character vectors isn’t well-defined.\n20, 21, 22, because R converts the factor levels to numeric values before doing any arithmetic.\n\"20\", \"21\", \"22\", because R first computes the difference and then converts answer to a character vector.\n-9, -8, -7, because R converts the factor levels to numeric values before doing any arithmetic.\n\"30\", \"31\", \"32\", because R returns f unchanged, since arithmetic with factors is not well-defined.\nThe expression will return an error, because R refuses to do arithmetic with factors."
+  },
+  {
+    "objectID": "quizzes/factors/questions/arithmetic.html#answerlist",
+    "href": "quizzes/factors/questions/arithmetic.html#answerlist",
+    "title": "Question",
+    "section": "",
+    "text": "NA, NA, NA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.\nNA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.\nNA, NA, NA, because factor level names are character vectors, and arithmetic on character vectors isn’t well-defined.\n20, 21, 22, because R converts the factor levels to numeric values before doing any arithmetic.\n\"20\", \"21\", \"22\", because R first computes the difference and then converts answer to a character vector.\n-9, -8, -7, because R converts the factor levels to numeric values before doing any arithmetic.\n\"30\", \"31\", \"32\", because R returns f unchanged, since arithmetic with factors is not well-defined.\nThe expression will return an error, because R refuses to do arithmetic with factors."
   },
   {
     "objectID": "in_progress.html",
@@ -92,44 +117,11 @@
     "text": "Sorry, we’re still building the page you’ve requested.\nIt’s almost done…really.\nWe’re just working through a few minor issues…\n\n\n\nImage Source"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Factors",
-    "section": "",
-    "text": "⏱ Estimated Time to Complete\n\n\n\nAbout 60–75 minutes, including practice exercises and the knowledge quiz.\nIn this module, we’ll cover R’s tool for representing categorical data: factors. It builds directly on the vector, matrix, list, and data frame concepts you’ve already learned in previous modules.\nContent is split into three short tutorials:",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "index.html#learning-goals",
-    "href": "index.html#learning-goals",
-    "title": "Factors",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nAfter completing this module, you will be able to:\n\nDescribe the characteristics of an R factor.\nExplain how factors differ from atomic vectors.\nGenerate new factors in R.\nAccess and modify factor levels.\nDescribe important use-cases for factors, and explain why factors are the best choice in these situations.\n\nClick the button below to get started.\n\n\n Begin Tutorial",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Overview"
-    ]
-  },
-  {
     "objectID": "conclusion.html",
     "href": "conclusion.html",
     "title": "Conclusion",
     "section": "",
-    "text": "By completing this module, you’ve built a solid understanding of R’s tool for representing categorical data: factors.",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Conclusion"
-    ]
-  },
-  {
-    "objectID": "conclusion.html#hand-in-assignment",
-    "href": "conclusion.html#hand-in-assignment",
-    "title": "Conclusion",
-    "section": "Hand-In Assignment",
-    "text": "Hand-In Assignment\n\n\n\n\n\n\nFactors Capstone Assignment\n\n\n\nComplete each step below in your own R session, then submit your work (see “What to Hand In” below).\n\nGenerate. Create a character vector called sizes containing 15 values randomly sampled (with replacement) from {\"small\", \"medium\", \"large\"}. Then create a factor called size_factor from sizes.\nInspect. Print levels(size_factor) and table(size_factor). In a comment, explain what each of these two commands tells you.\nModify levels. Relabel the factor’s levels to {\"S\", \"M\", \"L\"} (in the order that matches your original {\"small\", \"medium\", \"large\"} levels).\nConceptual explanation. In a comment, explain what would happen if you ran size_factor + 1, and why, referring specifically to what a factor actually stores internally.\nUse-case reasoning. In a comment, describe one variable from a dataset you’re familiar with (real or hypothetical) that should be represented as a factor, and one that should not, and explain your reasoning for each.\n\n\nWhat to Hand In\nSave all of your commands, in the order you ran them, in a single plain-text or R script file (e.g. yourname_factors.R), including all four required comments.\nA teacher reviewing your submission should be able to see: a correctly constructed factor, correct use of levels() and table() with an accurate explanation, correct level relabeling, an accurate conceptual explanation of factor arithmetic, and sound reasoning about when a factor is (and isn’t) the right choice.",
+    "text": "Congratulations, you’ve completed the Factors module!",
     "crumbs": [
       "Open-Stat-Prog",
       "Conclusion"
@@ -151,7 +143,7 @@
     "href": "conclusion.html#additional-reading",
     "title": "Conclusion",
     "section": "Additional Reading",
-    "text": "Additional Reading\nFor more information on the topics we’ve covered in this module, the following chapter from Hadley Wickham’s R for Data Science is an excellent resource.\n\nFactors in the Second Edition.\n\n\nAdvanced Reading\nFor a much more technical deep-dive into vectors and vector-like structures (including factors), check out the following chapter from Hadley Wickham’s Advanced R.\n\nVectors",
+    "text": "Additional Reading\nFor more information on the topics we’ve covered in this module, the following chapter from Hadley Wickham’s R for Data Science is an excellent resource.\n\nFactors\n\n\nAdvanced Reading\nFor a much more technical deep-dive into vectors and vector-like structures (including factors), check out the following chapter from Hadley Wickham’s Advanced R.\n\nVectors",
     "crumbs": [
       "Open-Stat-Prog",
       "Conclusion"
@@ -162,94 +154,32 @@
     "href": "conclusion.html#next-steps",
     "title": "Conclusion",
     "section": "Next Steps",
-    "text": "Next Steps\nNow that you have a good introduction to the fundamental data structures of the R statistical programming language you’re ready to start thinking about how to best organize your data analysis projects. In the next module, we’ll explore different aspects of effective R workflows, scripts, working directories, R projects, file paths, and coding style, to help you create reproducible, organized, and efficient data analysis projects.\n\n\n Next Module",
+    "text": "Next Steps\nNow that you have a good handle on R’s fundamental data structures you’re ready to start thinking about how to best organize your data analysis projects. In the next module, we’ll explore different aspects of effective R workflows.\n\n\n Next Module",
     "crumbs": [
       "Open-Stat-Prog",
       "Conclusion"
     ]
   },
   {
-    "objectID": "tutorials/factors/use_cases.html",
-    "href": "tutorials/factors/use_cases.html",
-    "title": "When to Use a Factor",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Factors",
     "section": "",
-    "text": "Note\n\n\n\nThis page asks you to reason about when to reach for a factor, not how to build one.\nYou now know how to create factors and how they differ from ordinary vectors internally. This page asks a different question: given some data, how do you decide whether it should be a factor in the first place?",
+    "text": "Estimated Completion Time\n\n\n\nAbout 60–75 minutes, including practice exercises and knowledge quiz.\nWelcome to the R Factors module. In this module, we’ll cover a particulalry useful class of data objects: factors. R uses factors to represent categorical data, so factors come up quite frequently in real-world data analysis (i.e., anytime your analysis involves a discrete grouping variable).",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors",
-      "When to Use a Factor"
+      "Overview"
     ]
   },
   {
-    "objectID": "tutorials/factors/use_cases.html#good-candidates-for-factors",
-    "href": "tutorials/factors/use_cases.html#good-candidates-for-factors",
-    "title": "When to Use a Factor",
-    "section": "Good Candidates for Factors",
-    "text": "Good Candidates for Factors\nA variable is usually a good candidate for a factor when it represents categories, not quantities, even if those categories happen to be written as numbers. A few examples:\n\nNominal categories with no inherent order, like {\"red\", \"blue\", \"green\"} or {\"male\", \"female\",   \"non-binary\"}.\nOrdinal categories with a meaningful order, like {\"low\", \"medium\", \"high\"} or a Likert-scale response like {\"strongly disagree\", ..., \"strongly agree\"}. (R factors can represent ordered categories too, via the ordered argument to factor(), though we won’t go deep into that here.)\nNumerically coded categories, like a survey where 1 means “yes” and 2 means “no.” Here the numbers are really just category labels in disguise. Doing arithmetic on them (like averaging 1.4) wouldn’t mean anything.",
+    "objectID": "index.html#learning-goals",
+    "href": "index.html#learning-goals",
+    "title": "Factors",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completing this module, you will be able to:\n\nDescribe the characteristics of an R factor.\nExplain how factors differ from atomic vectors.\nGenerate new factors in R.\nAccess and modify factor levels.\nDescribe important use-cases for factors, and explain why factors are the best choice in these situations.\n\nClick the button below to get started.\n\n\n Begin Tutorial",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors",
-      "When to Use a Factor"
-    ]
-  },
-  {
-    "objectID": "tutorials/factors/use_cases.html#poor-candidates-for-factors",
-    "href": "tutorials/factors/use_cases.html#poor-candidates-for-factors",
-    "title": "When to Use a Factor",
-    "section": "Poor Candidates for Factors",
-    "text": "Poor Candidates for Factors\nOn the other hand, don’t reach for a factor just because a variable happens to take on a small number of distinct values. A few examples where a factor would be the wrong choice:\n\nA count, like “number of children”, even if most values fall between 0 and 4, this is a genuine quantity you might want to average or add.\nA continuous measurement that happens to be rounded, like a test score out of 100, you’d still want to do arithmetic on this.\nAn identifier, like a participant ID number, while these aren’t meaningfully “categories” in the usual sense, they also aren’t something you’d typically model or plot as groups, so a plain character or integer vector is usually more appropriate.\n\n\n\n\n\n\n\nPractice\n\n\n\nFor each of the following variables, decide whether a factor would be an appropriate choice. Be ready to explain your reasoning.\n\nA column recording each survey respondent’s marital status: {\"single\", \"married\", \"divorced\", \"widowed\"}.\nA column recording each respondent’s exact age in years.\nA column recording which of 3 experimental treatment groups each participant was assigned to.\nA column recording each respondent’s annual income in dollars.\n\n\n Question Solution\n\n\nThink through each variable before checking the solution.\n\n\n\nFactor. Marital status is a small set of unordered categories, a textbook use-case for a factor.\nNot a factor. Age is a genuine quantity, you’d want to compute averages, compare magnitudes, and so on.\nFactor. Treatment group assignment is exactly the kind of categorical grouping factors were designed for, especially since this variable will likely be used in a statistical model later.\nNot a factor. Income is a continuous quantity, even though it might have a skewed distribution, you wouldn’t want R to prevent you from computing a mean or a sum.",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors",
-      "When to Use a Factor"
-    ]
-  },
-  {
-    "objectID": "tutorials/factors/use_cases.html#why-this-distinction-matters",
-    "href": "tutorials/factors/use_cases.html#why-this-distinction-matters",
-    "title": "When to Use a Factor",
-    "section": "Why This Distinction Matters",
-    "text": "Why This Distinction Matters\nGetting this right isn’t just a matter of style. If you accidentally leave a categorical variable as plain numbers, statistical modeling functions may treat it as a continuous predictor (implying, incorrectly, that “group 2” is somehow “twice as much” as “group 1”). If you accidentally convert a genuine quantity into a factor, you’ll lose the ability to do arithmetic on it, and many modeling and plotting functions will treat it as a set of unordered categories instead of a meaningful numeric scale. Choosing the right representation up front saves you from subtle, hard-to-diagnose errors later in an analysis.",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors",
-      "When to Use a Factor"
-    ]
-  },
-  {
-    "objectID": "tutorials/factors/use_cases.html#quick-check",
-    "href": "tutorials/factors/use_cases.html#quick-check",
-    "title": "When to Use a Factor",
-    "section": "Quick Check",
-    "text": "Quick Check\n\nWould you use a factor for a column recording customers’ star ratings (1–5) on a product review site? What about a column recording the number of reviews each product received? Explain the difference.\n\n\n\n\n\n\n\nReady to Continue?\n\n\n\nYou’ve now completed the Factors module. You’re ready to move on if you can:\n\nExplain what makes a factor different from an ordinary numeric or character vector.\nGenerate a factor using factor(), and access or modify its levels.\nExplain why mathematical operations on a factor return NA instead of a number.\nDecide, given a description of a variable, whether it should be represented as a factor.\n\nIf any of these still feel shaky, revisit the relevant page above, or try the Knowledge Quiz to pinpoint exactly where to focus. Once you’re ready, head to the Conclusion page to find this module’s hand-in assignment.",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors",
-      "When to Use a Factor"
-    ]
-  },
-  {
-    "objectID": "tutorials/factors/uniqueness.html",
-    "href": "tutorials/factors/uniqueness.html",
-    "title": "Special Role of Factors",
-    "section": "",
-    "text": "Note\n\n\n\nThis page is entirely conceptual: explaining why factors are neither numeric nor character vectors, even though they can look like either when printed.\nFactors often cause confusion for new (and not-so-new) data analysts. In particular, the print() method for factors shows the level names when printing factors. So, factors with textual level names (e.g., {“male”, “female”}) look much like character vectors when printed, and factors with numeric level names (e.g., {“0”, “1”}) look like numeric vectors. However, factors are not character vectors, numeric vectors, nor any other type of atomic vector: they have their own class, factor, which tells R functions to treat factors as encoded categorical variables.\nf1 &lt;- factor(sample(0:1, 10, TRUE))\nf2 &lt;- factor(sample(c(\"foo\", \"bar\"), 10, TRUE))\n\nf1 # looks a lot like an integer vector\n\n [1] 0 1 1 0 1 0 0 0 1 0\nLevels: 0 1\n\nf2 # looks like a character vector\n\n [1] bar foo foo foo bar foo bar bar foo bar\nLevels: bar foo\n\n# Not numeric or character\nis.numeric(f1)\n\n[1] FALSE\n\nis.integer(f1)\n\n[1] FALSE\n\nis.character(f1)\n\n[1] FALSE\n\nis.numeric(f2)\n\n[1] FALSE\n\nis.integer(f2)\n\n[1] FALSE\n\nis.character(f2)\n\n[1] FALSE\n\n# Not any type of vector, at all, actually\nis.vector(f1)\n\n[1] FALSE\n\nis.vector(f2)\n\n[1] FALSE\nSimilarly, even though factors are built from integer vectors, we can’t do mathematical operations on factors. Since factors represent discrete categories, not continuous quantities, mathematical operations on factors are generally meaningless.\nf1 + 1\n\n [1] NA NA NA NA NA NA NA NA NA NA\n\nmean(f1)\n\n[1] NA\nIn the examples above, the requested operations return missing values, NA, because we’re asking R to do a nonsensical calculation. So, the result cannot be meaningfully defined. By design, treating a factor as if it were numeric produces errors and/or null results. This conservative behavior ensures that categorical data are not accidentally interpreted as numeric values, which will usually produce misleading results.",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors",
-      "Special Role of Factors"
-    ]
-  },
-  {
-    "objectID": "tutorials/factors/uniqueness.html#quick-check",
-    "href": "tutorials/factors/uniqueness.html#quick-check",
-    "title": "Special Role of Factors",
-    "section": "Quick Check",
-    "text": "Quick Check\n\nIf f1 &lt;- factor(c(\"1\", \"2\", \"3\")), what would f1 + 1 return, and why?\nA colleague says: “I printed my factor and it looked exactly like a numeric vector, so I assume it is one.” What would you tell them?",
-    "crumbs": [
-      "Open-Stat-Prog",
-      "Factors",
-      "Special Role of Factors"
+      "Overview"
     ]
   },
   {
@@ -257,10 +187,9 @@
     "href": "quizzes/factors/index.html",
     "title": "Knowledge Quiz: Factors",
     "section": "",
-    "text": "Note\n\n\n\n\nClick the check-mark button to check your answer.\nClick the question-mark button to see an explanation of the solution.\n\n\n\n\n\n\nConsider the factor f1 generated by the following code.\nv1 &lt;- sample(1:3, 10, TRUE)\nf1 &lt;- factor(v1, levels = 1:3, labels = 3:1)\nWhat will the expression levels(f1) return?\n\nThe character vector: \"3\", \"2\", \"1\"The character vector: \"1\", \"2\", \"3\"The numeric vector: 3, 2, 1The numeric vector: 1, 2, 3The numeric vector: 3A length-10 numeric vector containing some combination of the values: 1, 2, 3.A length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\".A length-10 factor containing some combination of the values: 1, 2, 3.\n\n\n\n\nCorrect\nWrong: This vector is ordered incorrectly.\nWrong: Factor level names are always character values.\nWrong: Factor level names are always character values (these numbers are also ordered incorrectly).\nWrong: This is the number of levels, nlevels(f1).\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels.\n\n\n\n\n\nf &lt;- factor(c(\"1\", \"2\", \"3\")) creates a factor whose levels look like numbers. Which of the following correctly predicts and explains what f + 1 returns?\n\nIt returns f unchanged, since adding 1 to a factor has no effect.It returns NA for every element, because factors aren’t numeric. Arithmetic on a factor doesn’t have a meaningful definition, regardless of what the level names look like.It returns c(2, 3, 4), because R converts the level names to numbers before adding.It returns c(\"1\", \"2\", \"3\", 1), appending the 1 to the factor’s levels.It returns an error that stops execution, because R refuses to evaluate the expression at all.\n\n\n\nEven though this factor’s level names happen to look like numbers, a factor is never numeric under the hood. It’s an integer vector of category codes plus a levels attribute, with its own dedicated class. R won’t guess that you meant to convert the level names to numbers first; arithmetic on a factor simply isn’t defined, so every element of the result becomes a missing value, NA, rather than raising a hard error or silently doing something unintended.\n\n\n\n\nYou’re preparing a dataset with a column called group, where each value is either 1, 2, or 3, representing which of three experimental treatment conditions each participant received (the numbers are arbitrary labels, not measurements). Should this column be a factor?\n\nIt doesn’t matter, since factors and numeric vectors behave identically in statistical models.No — since the values are numeric, they should always be left as a plain numeric vector.No — factors can only be created from character data, never from numbers.Yes — the values represent unordered categories, even though they’re written as numbers, which is exactly the situation a factor is designed for.Yes — but only because there happen to be exactly three groups.\n\n\n\nThe key question isn’t “is the data numeric?” It’s “does this variable represent a quantity, or a category?” Here, 1, 2, and 3 are just labels for treatment groups; there’s no meaningful sense in which “group 2” is twice “group 1.” Representing this column as a factor tells R (and anyone reading your code) that these are categories to be compared, not values to be averaged or added, which matters a great deal once this variable gets used in a statistical model or a plot.\n\n\n\n\n\n\n Back to top",
+    "text": "Consider the factor f1 generated by the following code.\nv1 &lt;- sample(1:3, 10, TRUE)\nf1 &lt;- factor(v1, levels = 1:3, labels = 3:1)\nWhat will the expression levels(f1) return?\n\nA length-10 factor containing some combination of the values: 1, 2, 3The length-3 character vector: \"3\", \"2\", \"1\"The length-3 numeric vector: 3, 2, 1The length-3 numeric vector: 1, 2, 3A length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\"\n\n\n\n\nWrong: f1 has ten elements, but it has only three levels.\nCorrect\nWrong: Factor level names are always character values.\nWrong: Factor level names are always character values, and these numbers are ordered incorrectly.\nWrong: f1 has ten elements, but it has only three levels.\n\n\n\n\n\nThe command f &lt;- factor(30:32) creates a factor with levels \"30\", \"31\", \"32\". What will the expression f - 10 return?\nChoose the answer with the most appropriate justification.\n\n\"20\", \"21\", \"22\", because R first computes the difference and then converts answer to a character vector.NA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.NA, NA, NA, because arithmetic on factors isn’t well-defined, so there is no unambiguous solution.-9, -8, -7, because R converts the factor levels to numeric values before doing any arithmetic.The expression will return an error, because R refuses to do arithmetic with factors.\n\n\n\nEven though this factor’s level names happen to look like numbers, arithmetic on a factor simply isn’t possible. R doesn’t know how to implement the calculation we’ve requested, so every element of the result becomes a missing value, NA. A missing value is a datum for which we don’t know the true value. In this case, R uses the missing values to say, “I don’t have enough information to say what the answer should be.”\n\n\n\n\nYou’re preparing a dataset that contains a column called group representing which of three experimental treatment conditions each participant received. Each entry in the group column is either 1, 2, or 3 (these numbers are arbitrary labels, not quantitative measurements). Should this column be a factor?\nChoose the answer with the most appropriate justification.\n\nIt doesn’t matter, because a factor and a three-level numeric vectors will behave identically.Yes, because the values are integers and not decimal valued numbers.Yes, because the values represent unordered categories.Yes, because an integer vector cannot represent a continuous variable.No, because the values are numeric.\n\n\n\nIn this case, we don’t care if the data are numeric, or how many unique values the data contain. We need to ask ourselves if this variable represent a quantity or a category? Here, 1, 2, and 3 are just arbitrary labels for treatment groups, not numeric representations of “the amount of treatment”. So, Treatment 2 doesn’t need to be twice as much as Treatment 2. Representing this column as a factor tells R (and anyone reading your code) that these are categories to be compared, not quantitative values to be used for numeric calculations.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nClick the check-mark button to check your answer.\nClick the question-mark button to see an explanation of the solution.\n\n\n\n Back to top",
     "crumbs": [
       "Open-Stat-Prog",
-      "Factors",
       "Knowledge Quiz"
     ]
   },
@@ -269,20 +198,116 @@
     "href": "quizzes/factors/questions/factor_levels.html",
     "title": "Question",
     "section": "",
-    "text": "Consider the factor f1 generated by the following code.\nv1 &lt;- sample(1:3, 10, TRUE)\nf1 &lt;- factor(v1, levels = 1:3, labels = 3:1)\nWhat will the expression levels(f1) return?\n\n\n\nThe character vector: \"3\", \"2\", \"1\"\nThe character vector: \"1\", \"2\", \"3\"\nThe numeric vector: 3, 2, 1\nThe numeric vector: 1, 2, 3\nThe numeric vector: 3\nA length-10 numeric vector containing some combination of the values: 1, 2, 3.\nA length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\".\nA length-10 factor containing some combination of the values: 1, 2, 3."
+    "text": "Consider the factor f1 generated by the following code.\nv1 &lt;- sample(1:3, 10, TRUE)\nf1 &lt;- factor(v1, levels = 1:3, labels = 3:1)\nWhat will the expression levels(f1) return?\n\n\n\nThe length-3 character vector: \"3\", \"2\", \"1\"\nThe length-3 character vector: \"1\", \"2\", \"3\"\nThe length-3 numeric vector: 3, 2, 1\nThe length-3 numeric vector: 1, 2, 3\nThe length-1 numeric vector: 3\nA length-10 numeric vector containing some combination of the values: 1, 2, 3\nA length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\"\nA length-10 factor containing some combination of the values: 1, 2, 3"
   },
   {
     "objectID": "quizzes/factors/questions/factor_levels.html#answerlist",
     "href": "quizzes/factors/questions/factor_levels.html#answerlist",
     "title": "Question",
     "section": "",
-    "text": "The character vector: \"3\", \"2\", \"1\"\nThe character vector: \"1\", \"2\", \"3\"\nThe numeric vector: 3, 2, 1\nThe numeric vector: 1, 2, 3\nThe numeric vector: 3\nA length-10 numeric vector containing some combination of the values: 1, 2, 3.\nA length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\".\nA length-10 factor containing some combination of the values: 1, 2, 3."
+    "text": "The length-3 character vector: \"3\", \"2\", \"1\"\nThe length-3 character vector: \"1\", \"2\", \"3\"\nThe length-3 numeric vector: 3, 2, 1\nThe length-3 numeric vector: 1, 2, 3\nThe length-1 numeric vector: 3\nA length-10 numeric vector containing some combination of the values: 1, 2, 3\nA length-10 character vector containing some combination of the values: \"1\", \"2\", \"3\"\nA length-10 factor containing some combination of the values: 1, 2, 3"
   },
   {
     "objectID": "quizzes/factors/questions/factor_levels.html#answerlist-1",
     "href": "quizzes/factors/questions/factor_levels.html#answerlist-1",
     "title": "Question",
     "section": "Answerlist",
-    "text": "Answerlist\n\nCorrect\nWrong: This vector is ordered incorrectly.\nWrong: Factor level names are always character values.\nWrong: Factor level names are always character values (these numbers are also ordered incorrectly).\nWrong: This is the number of levels, nlevels(f1).\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels."
+    "text": "Answerlist\n\nCorrect\nWrong: This vector is ordered incorrectly.\nWrong: Factor level names are always character values.\nWrong: Factor level names are always character values, and these numbers are ordered incorrectly.\nWrong: This is the number of levels, nlevels(f1).\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels.\nWrong: f1 has ten elements, but it has only three levels."
+  },
+  {
+    "objectID": "tutorials/factors/creating.html",
+    "href": "tutorials/factors/creating.html",
+    "title": "Creating Factors",
+    "section": "",
+    "text": "We create factors using the factor() function. This function takes a vector of values (typically numeric or character) where each unique value represents a group and converts this input vector into a factor.\nBelow, we create a length-10 integer vector, x, and convert it to a factor called f1.\n(x &lt;- sample(1:3, 10, TRUE))\n\n [1] 3 1 3 2 2 2 3 3 2 2\n\n(f1 &lt;- factor(x))\n\n [1] 3 1 3 2 2 2 3 3 2 2\nLevels: 1 2 3\nHere, we create a length-10 character vector, y, and convert it to a factor called f2.\n(y &lt;- rep(c(\"foo\", \"bar\"), 10))\n\n [1] \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\"\n[13] \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\" \"foo\" \"bar\"\n\n(f2 &lt;- factor(y))\n\n [1] foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo bar foo\n[20] bar\nLevels: bar foo\nIt may not seem like the factor() function did much in the examples above, but that’s far from true. Regardless of what type of input data we use to create a factor, the factor() function will always induce three consistent features in the resulting factor object.",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Creating Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/creating.html#class",
+    "href": "tutorials/factors/creating.html#class",
+    "title": "Creating Factors",
+    "section": "Class",
+    "text": "Class\nUnlike atomic vectors, factors have their own class: factor.\nOur example input vectors, x and y, are both atomic vectors. So, their classes are the same as their atomic data type.\n\nclass(x)\n\n[1] \"integer\"\n\nclass(y)\n\n[1] \"character\"\n\n\nBoth f1 and f2, however, are factors. So, their classes are both factor.\n\nclass(f1)\n\n[1] \"factor\"\n\nclass(f2)\n\n[1] \"factor\"\n\n\nActually, it would be more appropriate to say that f1 and f2 are factors because their class is factor. If you’ll forgive the aggressive anthropomorphism, we could say that an object’s class essentially defines what that object is, from R’s perspective.\n\nR uses an object’s class to decide how to handle that object in various analyses. When we use a factor in some analysis, R recognizes the class attribute, and applies appropriate processing. For example, in the following code, we use the Species factor to define the x-axis of a boxplot. R interprets the factor as a group indicator and draws a conditional boxplot.\n\nboxplot(Petal.Width ~ Species, data = iris)",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Creating Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/creating.html#attributes",
+    "href": "tutorials/factors/creating.html#attributes",
+    "title": "Creating Factors",
+    "section": "Attributes",
+    "text": "Attributes\nIn addition to their class, factors have a levels attribute that stores the names of the groups represented by the factor.\nSince x and y are atomic vectors, they don’t have any attributes.\n\nattributes(x)\n\nNULL\n\nattributes(y)\n\nNULL\n\n\nBut the factors f1 and f2 have levels and class attributes.\n\nattributes(f1)\n\n$levels\n[1] \"1\" \"2\" \"3\"\n\n$class\n[1] \"factor\"\n\nattributes(f2)\n\n$levels\n[1] \"bar\" \"foo\"\n\n$class\n[1] \"factor\"",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Creating Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/creating.html#factor-levels",
+    "href": "tutorials/factors/creating.html#factor-levels",
+    "title": "Creating Factors",
+    "section": "Factor Levels",
+    "text": "Factor Levels\nThe levels attribute is one of a factor’s most useful features because they add substantive meaning. A factor’s levels name the categories represented by that factor. By default, the factor() function will use the unique values of the input vector to name the levels of the resulting factor.\n\nlevels(f1)\n\n[1] \"1\" \"2\" \"3\"\n\nlevels(f2)\n\n[1] \"bar\" \"foo\"\n\n\nWe can assign our own level names through the labels argument.\n\n(z &lt;- sample(10:11, 10, TRUE))\n\n [1] 11 10 10 11 10 11 11 10 11 10\n\n(f3 &lt;- factor(z, labels = c(\"Group 10\", \"Group 11\")))\n\n [1] Group 11 Group 10 Group 10 Group 11 Group 10 Group 11 Group 11 Group 10\n [9] Group 11 Group 10\nLevels: Group 10 Group 11\n\nlevels(f3)\n\n[1] \"Group 10\" \"Group 11\"\n\n\nIf we use the table() function to cross tabulate the factor f3 and it’s input vector z, we see how the unique values of z are matched with the levels we’ve defined for f3.\n\ntable(z, f3)\n\n    f3\nz    Group 10 Group 11\n  10        5        0\n  11        0        5\n\n\nWe can also modify the levels of an existing factor.\n\nlevels(f3) &lt;- c(\"g10\", \"g11\")\nlevels(f3)\n\n[1] \"g10\" \"g11\"\n\ntable(z, f3)\n\n    f3\nz    g10 g11\n  10   5   0\n  11   0   5\n\n\n\nNuances of Factor Level Mapping\nSometimes, the way that the factor() function maps level names to the values of the input vector can be a bit confusing. Consider the following example.\nPredict what the following code will print.\n\nPay attention to the structure of the input vector and the order of the labels vector.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExplanation\n\n\n\n\n\nIf your prediction was not correct, I’m guessing you were probably expecting R to directly map the values in the labels vector to the values in the input vector and produce something like the following.\n\n\n[1] yes yes no  yes yes no  yes yes no \nLevels: yes no\n\n\nThis discrepancy comes from an intermediate step that R sneaks in when assigning factor levels. R sorts the unique values of the input vector before mapping the level names provided by the labels argument. So, the labels c(\"yes\", \"yes\" \"no\") are matched with the sorted input values c(\"bar\", \"baz\", \"foo\").\nYou may also have expected the duplicated \"yes\" values in the labels vector to cause problems, but R actually uses these duplicates to do something quite useful: collapse groups. The duplicated \"yes\" entries in labels correspond to the input values \"bar\" and \"baz\", so R happily assigns all cases with input values \"bar\" or \"baz\" to the \"yes\" group.\nWe can use this behavior to combine groups when creating new factors or modifying the levels of existing factors.\n\ndrinks3 &lt;-\n    drinks6 &lt;- factor(\n        sample(c(\"coffee\", \"tea\", \"water\", \"juice\", \"beer\", \"wine\"), 20, TRUE)\n    )\nlevels(drinks3) &lt;-\n    c(\"alcoholic\", \"caffeinated\", \"boring\", \"caffeinated\", \"boring\", \"alcoholic\")\n\ntable(drinks3, drinks6)\n\n             drinks6\ndrinks3       beer coffee juice tea water wine\n  alcoholic      4      0     0   0     0    4\n  caffeinated    0      3     0   4     0    0\n  boring         0      0     2   0     3    0",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Creating Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/creating.html#vector-type",
+    "href": "tutorials/factors/creating.html#vector-type",
+    "title": "Creating Factors",
+    "section": "Vector Type",
+    "text": "Vector Type\nMuch like a matrix is just a vector with a dim attribute, a factor is just an integer vector with levels and class attributes.\n\nRegardless of the input vector’s type, the data underlying the new factor will be an integer vector.\n\nAs you’d expect, x and y have suitable atomic types (namely, integer and character).\n\ntypeof(x)\n\n[1] \"integer\"\n\ntypeof(y)\n\n[1] \"character\"\n\n\nBut the factors f1 and f2 are both integer vectors, at their core. Factors are really just ambitious integer vectors wearing fancy clothes.\n\ntypeof(f1)\n\n[1] \"integer\"\n\ntypeof(f2)\n\n[1] \"integer\"\n\n\n\n\n\n\n\n\nWarning\n\n\n\nUnlike vectors and matrices, we cannot freely revert a factor to its input vector by deleting the factor-specific attributes. In all but the most specialized cases, we’ll loose information.\nSince x was originally an integer vector, this process seems to work for f1.\n\nattributes(f1) &lt;- NULL\nf1\n\n [1] 3 1 3 2 2 2 3 3 2 2\n\nidentical(x, f1)\n\n[1] TRUE\n\n\nBut we clearly loose information if we try to naively convert f2 back to a vector.\n\nattributes(f2) &lt;- NULL\nf2\n\n [1] 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1\n\nidentical(y, f2)\n\n[1] FALSE\n\n\n\n\n\n\n\n\n\n\nPractice\n\n\n\nCreate a length-20 factor with two levels = {“yes”, “no”}.\n\n Interactive Editor Solution\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nAs usual, there are myriad acceptable solutions. Here are a few possibilities.\nWhen we provide a character vector as input, factor() will derive the level names from the unique values of the input vector.\n\nfactor(rep(c(\"yes\", \"no\"), 10))\n\n [1] yes no  yes no  yes no  yes no  yes no  yes no  yes no  yes no  yes no  yes\n[20] no \nLevels: no yes\n\nfactor(sample(c(\"yes\", \"no\"), 20, TRUE))\n\n [1] no  yes yes no  yes no  yes no  yes no  no  no  yes no  yes yes yes yes no \n[20] no \nLevels: no yes\n\n\nBelow, we provide various flavors of atomic vector as input and then use the labels argument to tell factor() how to map the unique input values to factor levels.\n\nfactor(sample(1:2, 20, TRUE), labels = c(\"yes\", \"no\"))\n\n [1] no  yes yes yes yes yes yes no  yes yes yes no  no  yes yes yes yes yes no \n[20] yes\nLevels: yes no\n\nfactor(rep(c(3.14, 1.96), each = 10), labels = c(\"no\", \"yes\"))\n\n [1] yes yes yes yes yes yes yes yes yes yes no  no  no  no  no  no  no  no  no \n[20] no \nLevels: no yes\n\nfactor(sample(LETTERS[8:9], 20, TRUE), labels = c(\"yes\", \"no\"))\n\n [1] no  no  yes yes no  no  yes no  yes no  no  yes yes yes no  yes no  yes no \n[20] no \nLevels: yes no\n\n\n\n\n\n\n\n\n\n\n\n\n\nKnowledge Check\n\n\n\n\nWhat are the three primary characteristics that define a factor?\nWhat attributes differentiate an integer vector from a factor?",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Creating Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/uniqueness.html",
+    "href": "tutorials/factors/uniqueness.html",
+    "title": "Special Role of Factors",
+    "section": "",
+    "text": "Factors often cause confusion for new (and not-so-new) data analysts. In particular, the print() method for factors shows the level names when printing factors. So, factors with textual level names (e.g., {“male”, “female”}) look much like character vectors when printed, and factors with numeric level names (e.g., {“0”, “1”}) look like numeric vectors.\nHowever, factors are not character vectors, numeric vectors, nor any other type of atomic vector. Factors have their own class, factor, which tells R functions to interpret factors as encoded categorical variables.\nBelow, we create two potentially confusing factors.\nf1 &lt;- factor(sample(0:1, 10, TRUE))\nf2 &lt;- factor(sample(c(\"foo\", \"bar\"), 10, TRUE))\nWhen we print f1, the result looks a lot like an integer vector.\nf1\n\n [1] 1 0 0 1 1 1 1 0 0 0\nLevels: 0 1\nBut, of course, f1 is not an integer vector.\nis.integer(f1)\n\n[1] FALSE\nLikewise, when we print f2, the result looks a lot like a character vector.\nf2\n\n [1] bar bar foo foo foo bar foo bar foo foo\nLevels: bar foo\nUnsurprisingly, f2 is not a character vector.\nis.character(f2)\n\n[1] FALSE\nActually, neither f1 nor f2 are any kind of atomic vector.\nis.vector(f1)\n\n[1] FALSE\n\nis.vector(f2)\n\n[1] FALSE",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Special Role of Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/uniqueness.html#limitations",
+    "href": "tutorials/factors/uniqueness.html#limitations",
+    "title": "Special Role of Factors",
+    "section": "Limitations",
+    "text": "Limitations\nEven though factors are built from integer vectors, we can’t do mathematical operations on factors. Since factors represent discrete categories, not continuous quantities, mathematical operations on factors are usually meaningless.\n\nf1 + 1\n\n [1] NA NA NA NA NA NA NA NA NA NA\n\nmean(f1)\n\n[1] NA\n\n\nIn the examples above, the requested operations return missing values, NA, because we’re asking R to do a nonsensical calculation. So, the result cannot be meaningfully defined.\nBy design, treating a factor as if it were numeric produces errors and/or null results. This conservative behavior ensures that categorical data are not accidentally interpreted as numeric values, which would usually produce misleading results.",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Special Role of Factors"
+    ]
+  },
+  {
+    "objectID": "tutorials/factors/uniqueness.html#features",
+    "href": "tutorials/factors/uniqueness.html#features",
+    "title": "Special Role of Factors",
+    "section": "Features",
+    "text": "Features\nAt this point, factors may sound like more trouble than they’re worth, but that’s certainly not the case. In real-world data analysis, factors actually save you a lot of time by automatic the process of creating group codes. As we demonstrated with the conditional boxplot on the last page, R will automatically generate an appropriate set of group codes when you use a factor in your analysis. Let’s look at another very common example.\nBelow, we’re using the iris dataset to estimate a linear regression model.\n\nThe outcome variable, Petal.Length, is a numeric vector that contains the average lengths of the petals on 100 iris flowers.\nThe predictor variable, Species, is a three-level factor that records the species of each plant in the sample.\n\nPredict how the model estimated below will be parameterized (i.e., what regression coefficients will be estimated).\nIf you are not familiar with linear regression, feel free to skip directly to the explanation.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExplanation\n\n\n\n\n\nNotice that the estimated regression model contains two dummy codes, even though we only specified one predictor variable in the formula Petal.Length ~ Species. That’s the key point. Since Species is a factor, R first creates a set of dummy codes to represent the species groups, and then uses those dummy codes as the actual predictors in the regression model.\nIf we try to estimate the same model using a numeric representation of species, we get entirely incorrect results.\n\n# Create an integer representation of the 'Species' variable\niris$IntegerSpecies &lt;- as.integer(iris$Species)\n\n# Estimate the wrong model\nout &lt;- lm(Petal.Length ~ IntegerSpecies, data = iris)\nsummary(out)\n\n\nCall:\nlm(formula = Petal.Length ~ IntegerSpecies, data = iris)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-1.303 -0.313 -0.113  0.342  1.342 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    -0.33200    0.12060  -2.753  0.00664 ** \nIntegerSpecies  2.04500    0.05582  36.632  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.5582 on 148 degrees of freedom\nMultiple R-squared:  0.9007,    Adjusted R-squared:    0.9 \nF-statistic:  1342 on 1 and 148 DF,  p-value: &lt; 2.2e-16\n\n\nSince IntegerSpecies is an ordinary numeric vector, R doesn’t do anything special. So, this model quantifies species as a continuously varying attribute of the plant, not a qualitative grouping factor.\nOf course, we don’t absolutely need factors, in this case. To estimate an appropriate model, without factors, we could create the dummy codes ourselves by doing something like the following.\n\n# Create dummy codes to represent the species groups\niris$versicolor &lt;- ifelse(iris$IntegerSpecies == 2, 1, 0)\niris$verginica &lt;- ifelse(iris$IntegerSpecies == 3, 1, 0)\n\n# Estimate the correct model\nout &lt;- lm(Petal.Length ~ versicolor + verginica, data = iris)\nsummary(out)\n\n\nCall:\nlm(formula = Petal.Length ~ versicolor + verginica, data = iris)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-1.260 -0.258  0.038  0.240  1.348 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  1.46200    0.06086   24.02   &lt;2e-16 ***\nversicolor   2.79800    0.08607   32.51   &lt;2e-16 ***\nverginica    4.09000    0.08607   47.52   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4303 on 147 degrees of freedom\nMultiple R-squared:  0.9414,    Adjusted R-squared:  0.9406 \nF-statistic:  1180 on 2 and 147 DF,  p-value: &lt; 2.2e-16\n\n\nNow, we’ve estimate an appropriate model, but we had to do a lot more work to get there. Clearly, the factor-based solution is our best option. Factors are a fundamental part of the R data analysis workflow, so R handles them very intelligently. Whenever you encounter qualitative variables in your analyses, do yourself a favor: use factors!\n\n\n\n\n\n\n\n\n\nKnowledge Check\n\n\n\n\nIf we define f1 as f1 &lt;- factor(1:3), what would f1 * 42 return, and why?\nWhat are some of the practical advantages of using factors in our analyses?",
+    "crumbs": [
+      "Open-Stat-Prog",
+      "Tutorial",
+      "Special Role of Factors"
+    ]
   }
 ]
